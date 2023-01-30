@@ -1,23 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import "../Styling/HomePage.css";
 
 function HomePage() {
+  const [nickName, setNickname] = useState("");
+  const handleChange = (e: any) => {
+    setNickname(e.target.value);
+  };
+  const handleSub = (e: any) => {
+    e.preventDefault();
+    console.log(nickName);
+  };
+
   return (
     <div>
       <div>HomePage</div>
-      <Form>
-        <Form.Group className="mb-3" controlId="input">
-          <Form.Label>What is Your Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter NickName" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+      <div className="form">
+        <Form onSubmit={handleSub}>
+          <Form.Group className="mb-3" controlId="input">
+            <Form.Label>What is Your Name</Form.Label>
+            <Form.Control
+              onChange={handleChange}
+              value={nickName}
+              type="text"
+              placeholder="Enter Nickname"
+            />
+            <Form.Text className="text-muted"></Form.Text>
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useGameContext } from "../Context/Context";
+import checkList from "../../Data/Clarifications.json";
 
 function Player(): JSX.Element {
+  console.log(checkList);
   interface Player {
     id: string;
     cards: [];
@@ -11,7 +14,7 @@ function Player(): JSX.Element {
     //setPlayer()
   }, []);
 
-  // const {clueCards, clarificationCards, onAccuse} = useContext(gameContext)
+  //   const {clueCards, onAccuse} = useGameContext()
 
   function onAccuse() {
     console.log("This player accuse");

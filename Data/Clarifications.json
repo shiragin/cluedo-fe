@@ -1,6 +1,80 @@
-{
-  "name": "Lady Scarlet",
-  "type": "Suspect",
-  "color": "Red",
-  "image": ""
-}
+[
+  {
+    "name": "Lady Scarlet",
+    "type": "Suspect",
+    "color": "Red",
+    "image": ""
+  },
+  {
+    "name": "Prof Green",
+    "type": "Suspect",
+    "color": "Green",
+    "image": ""
+  },
+  {
+    "name": "Lieutenant Colonel",
+    "type": "Suspect",
+    "color": "Yellow",
+    "image": ""
+  },
+  {
+    "name": "Mrs. Heavens",
+    "type": "Suspect",
+    "color": "Blue",
+    "image": ""
+  },
+  {
+    "name": "Prof Plum",
+    "type": "Suspect",
+    "color": "Purple",
+    "image": ""
+  },
+  {
+    "name": "Madam White",
+    "type": "Suspect",
+    "color": "White",
+    "image": ""
+  },
+  {
+    "name": "Prof Green",
+    "type": "Suspect",
+    "color": "Green",
+    "image": ""
+  },
+  {
+    "name": "Candle Stick",
+    "type": "Weapon",
+    "color": "Gray",
+    "image": ""
+  },
+  {
+    "name": "Rope",
+    "type": "Weapon",
+    "color": "Gray",
+    "image": ""
+  },
+  {
+    "name": "Knife",
+    "type": "Weapon",
+    "color": "Gray",
+    "image": ""
+  },
+  {
+    "name": "Kitchen",
+    "type": "Location",
+    "color": "Dark Green",
+    "image": ""
+  },
+  {
+    "name": "Dining Room",
+    "type": "Location",
+    "color": "Dark Green",
+    "image": ""
+  },
+  {
+    "name": "Spa",
+    "type": "Location",
+    "color": "Dark Green",
+    "image": ""
+  }
+]

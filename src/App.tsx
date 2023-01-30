@@ -1,10 +1,11 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { io } from "socket.io-client";
+import {io} from "socket.io-client";
+import GameContextProvider from "./Context/Context";
+import HomePage from "./pages/HomePage";
 
-const App = () => {
-  
+function App() {
   return (
     <GameContextProvider>
       <div className="App">

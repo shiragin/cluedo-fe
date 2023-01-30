@@ -2,14 +2,16 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { io } from "socket.io-client";
+import GameContextProvider  from "./Context/Context";
 
-const socket = io("http://localhost:8080");
-
-function App() {
+const App = () => {
+  
   return (
-    <div className="App">
-      <h1>Cluedo!</h1>
-    </div>
+    <GameContextProvider>
+      <div>
+        <h1>Test</h1>
+      </div>
+    </GameContextProvider>
   );
 }
 

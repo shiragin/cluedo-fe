@@ -1,21 +1,27 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useGameContext } from "../Context/Context";
 import "../Styling/HomePage.css";
 
 function HomePage() {
   const [nickName, setNickname] = useState("");
+
+  const { onAddUser } = useGameContext();
+
   const handleChange = (e: any) => {
     setNickname(e.target.value);
   };
   const handleSub = (e: any) => {
     e.preventDefault();
-    console.log(nickName);
+    onAddUser(nickName);
   };
 
   return (
     <div>
-      <div>HomePage</div>
+      <div className="App">
+        <h1>Cluedo!</h1>
+      </div>
       <div className="form">
         <Form onSubmit={handleSub}>
           <Form.Group className="mb-3" controlId="input">

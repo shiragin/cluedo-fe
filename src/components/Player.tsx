@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useGameContext } from "../Context/Context";
-import checkList from "../../Data/Clarifications.json";
+import checkList from "../Data/Clarifications.json";
 
 function Player(): JSX.Element {
   console.log(checkList);

@@ -15,7 +15,9 @@ function HomePage() {
 
   return (
     <div>
-      <div>HomePage</div>
+      <div className="App">
+        <h1>Cluedo!</h1>
+      </div>
       <div className="form">
         <Form onSubmit={handleSub}>
           <Form.Group className="mb-3" controlId="input">

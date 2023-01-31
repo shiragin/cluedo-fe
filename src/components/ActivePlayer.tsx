@@ -5,9 +5,9 @@ import ClueCard from './Cards/ClueCard';
 function ActivePlayer(): JSX.Element {
   return (
     <div className='center'>
+      <h1>Active Player</h1>
       <ClueCard />
-      {/* <h1>Active Player</h1>
-        <Button variant="success">Accuse</Button>{' '} */}
+      <Button variant="success">Accuse</Button>{' '}
     </div>
   );
 }

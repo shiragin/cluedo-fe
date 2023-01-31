@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import SuspectCard from '../components/Cards/ClueCard';
 // import { RxMagnifyingGlass } from 'react-icons/rx';
 import { useGameContext } from '../Context/Context';
 import '../Styling/Homepage.scss';
@@ -41,7 +40,6 @@ function HomePage() {
             Solve a murder
           </Button>
         </Form>
-        <SuspectCard />
       </div>
     </div>
   );

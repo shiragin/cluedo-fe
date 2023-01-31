@@ -7,7 +7,7 @@ import '../../Styling/SuspectCard.scss';
 //   image: string;
 // }
 
-function SuspectCard(): JSX.Element {
+function ClueCard(): JSX.Element {
   const name = 'Yonatan Salmon';
   const type = 'suspect';
   const deck = 'Evidence';
@@ -28,4 +28,4 @@ function SuspectCard(): JSX.Element {
   );
 }
 
-export default SuspectCard;
+export default ClueCard;

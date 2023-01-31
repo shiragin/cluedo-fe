@@ -1,11 +1,11 @@
-@import "variables";
+@import 'variables';
 
 .homepage-img {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   height: 100vh;
-  background-image: url("../Data/Background.jpg");
+  background-image: url('../Data/Background.jpg');
   .container {
     margin-top: 6rem;
     width: 50%;
@@ -24,7 +24,7 @@
       h1 {
         font-size: 4rem;
         text-align: center;
-        font-family: "Kumbh Sans";
+        font-family: 'Kumbh Sans';
         color: $primary-color;
         margin-bottom: 2.2rem;
       }
@@ -114,10 +114,10 @@
 
 .waiting-room-container {
   gap: 1rem;
-  display: flex
+  display: flex;
 }
 
-.button-container{
+.button-container {
   display: flex;
   flex-direction: column;
 }

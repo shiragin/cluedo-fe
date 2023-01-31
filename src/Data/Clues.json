@@ -36,39 +36,39 @@
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675146408/T041TFU6DE1-U041J6GTJS3-4690e5465a74-512_f1aqiq.jpg"
   },
   {
-    "name": "Candle Stick",
+    "name": "JavaScript",
     "type": "weapon",
     "color": "Gray",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185119/js_lcg0q8.png"
   },
   {
-    "name": "Rope",
+    "name": "CSS",
     "type": "weapon",
     "color": "Gray",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185023/css_wvrebb.png"
   },
   {
-    "name": "Knife",
+    "name": "HTML",
     "type": "weapon",
     "color": "Gray",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185016/html_gufguf.png"
+  },
+  {
+    "name": "Classroom",
+    "type": "location",
+    "color": "Dark Green",
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185514/WhatsApp_Image_2023-01-31_at_18.58.46_wii6bo.jpg"
+  },
+  {
+    "name": "Mentors Room",
+    "type": "location",
+    "color": "Dark Green",
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185502/WhatsApp_Image_2023-01-31_at_18.58.45_vej1hd.jpg"
   },
   {
     "name": "Kitchen",
     "type": "location",
     "color": "Dark Green",
-    "image": ""
-  },
-  {
-    "name": "Dining Room",
-    "type": "location",
-    "color": "Dark Green",
-    "image": ""
-  },
-  {
-    "name": "Spa",
-    "type": "location",
-    "color": "Dark Green",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185495/WhatsApp_Image_2023-01-31_at_18.58.45_2_luy9ed.jpg"
   }
 ]

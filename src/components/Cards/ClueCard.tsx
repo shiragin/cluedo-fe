@@ -27,7 +27,6 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
 
   return (
     <div
-      // className={`clue-card ${type}`}
       onClick={handleClick}
       onContextMenu={(e) => handleRightClick(e)}
       className={
@@ -40,16 +39,12 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
           : `clue-card ${type}`
       }
     >
-      <div className='clue-card-type'>{type.toUpperCase()}</div>
+      {/* <div className='clue-card-type'>{type.toUpperCase()}</div> */}
       <div className='clue-card-name'>
         {/* <div className='deck'>{color}</div> */}
         <div>{name}</div>
       </div>
-      {image ? (
-        <img className='clue-card-image' src={image} alt={name} />
-      ) : (
-        <img className='clue-card-image' src={Weapon} alt={name} />
-      )}
+      <img className='clue-card-image' src={image} alt={name} />
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import '../../Styling/SuspectCard.scss';
-import "../../Data/Clues.json";
-
+import '../../Data/Clues.json';
+import Weapon from '../../Data/javascript_logo.png';
+// import Location from '../../Data/kitche.jpg';
 
 interface Props {
   name: string;
@@ -15,13 +16,17 @@ function ClueCard({ name, type, color, image }: Props): JSX.Element {
     console.log('clicked');
   };
   return (
-    <div className={`clue-card ${type}`} onClick={handleClick} style={{ width: "200px", height: "250px" }}>
+    <div className={`clue-card ${type}`} onClick={handleClick}>
       <div className='clue-card-type'>{type.toUpperCase()}</div>
       <div className='clue-card-name'>
-        <div className='deck'>{color}</div>
+        {/* <div className='deck'>{color}</div> */}
         <div>{name}</div>
       </div>
-      <img className='clue-card-image' src={image} alt={name} style={{ width: "90px", height: "200px" }} />
+      {image ? (
+        <img className='clue-card-image' src={image} alt={name} />
+      ) : (
+        <img className='clue-card-image' src={Weapon} alt={name} />
+      )}
     </div>
   );
 }

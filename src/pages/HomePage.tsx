@@ -39,7 +39,7 @@ function HomePage() {
           <h1>Cluedo</h1>
           {/* <RxMagnifyingGlass /> */}
         </div>
-        <Form hidden={!show} onSubmit={handleSub}>
+        {/* <Form hidden={!show} onSubmit={handleSub}>
           <Form.Group className="mb-3" controlId="input">
             <Form.Label>What is your name?</Form.Label>
             <Form.Control
@@ -54,8 +54,8 @@ function HomePage() {
           <Button variant="primary" type="submit">
             Solve a murder
           </Button>
-        </Form>
-        <div className="waiting-room-container " hidden={show}>
+        </Form> */}
+        {/* <div className="waiting-room-container " hidden={show}>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -88,7 +88,16 @@ function HomePage() {
               create Room
             </Button>
           </div>
-        </div>
+        </div> */}
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+        </Form>
       </div>
     </div>
   );

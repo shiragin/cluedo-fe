@@ -10,6 +10,7 @@ function ActivePlayer(): JSX.Element {
         <ClueCard key={index} name={clue.name} type={clue.type} color={clue.color} image={clue.image} />
       ))}
       <Button variant="success">Accuse</Button>
+      <Button variant="info">Ask</Button>
     </div>
   );
 }

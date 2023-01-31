@@ -5,6 +5,7 @@ import Table from "react-bootstrap/Table";
 // import { RxMagnifyingGlass } from 'react-icons/rx';
 import { useGameContext } from "../Context/Context";
 import "../Styling/Homepage.scss";
+import CreateRoom from "../components/CreateRoom";
 
 function HomePage() {
   const [show, setShow] = useState(true);
@@ -39,7 +40,7 @@ function HomePage() {
           <h1>Cluedo</h1>
           {/* <RxMagnifyingGlass /> */}
         </div>
-        <Form hidden={!show} onSubmit={handleSub}>
+        {/* <Form hidden={!show} onSubmit={handleSub}>
           <Form.Group className="mb-3" controlId="input">
             <Form.Label>What is your name?</Form.Label>
             <Form.Control
@@ -54,8 +55,8 @@ function HomePage() {
           <Button variant="primary" type="submit">
             Solve a murder
           </Button>
-        </Form>
-        <div className="waiting-room-container " hidden={show}>
+        </Form> */}
+        {/* <div className="waiting-room-container " hidden={show}>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -88,7 +89,8 @@ function HomePage() {
               create Room
             </Button>
           </div>
-        </div>
+        </div> */}
+        <CreateRoom />
       </div>
     </div>
   );

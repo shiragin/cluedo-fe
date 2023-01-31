@@ -5,6 +5,7 @@ import Table from "react-bootstrap/Table";
 // import { RxMagnifyingGlass } from 'react-icons/rx';
 import {useGameContext} from "../Context/Context";
 import "../Styling/Homepage.scss";
+import CreateRoom from "../components/CreateRoom";
 
 function HomePage() {
   const [show, setShow] = useState(true);
@@ -89,15 +90,7 @@ function HomePage() {
             </Button>
           </div>
         </div> */}
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-        </Form>
+        <CreateRoom />
       </div>
     </div>
   );

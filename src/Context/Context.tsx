@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
 interface IGameContext {
@@ -18,12 +18,15 @@ export default function GameContextProvider({
   socket: Socket | null;
   children: any;
 }) {
+  const [nickname, setNickname] = useState("");
   const onAddUser = (name: string): void => {
     socket?.emit("add_user", { name });
+    setNickname(name);
   };
 
   socket?.on("user_added", (data: string): void => {
     console.log(data);
+    socket.emit("create_room", { nickname: nickname, room: "room1" });
   });
 
   return (

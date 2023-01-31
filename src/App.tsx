@@ -3,7 +3,7 @@ import "./Styling/App.scss";
 import { io, Socket } from "socket.io-client";
 import GameContextProvider from "./Context/Context";
 import HomePage from "./pages/HomePage";
-import GameRoom from "./components/GameRoom";
+import GameRoom from "./pages/GameRoomPage";
 import { useEffect, useState } from "react";
 const mainSocket = io("http://localhost:8080");
 function App() {

@@ -16,19 +16,10 @@ export default function GameContextProvider({
   children: any;
 }) {
   const [user, setUser] = useState<User | null>(null);
-  // const [nickname, setNickname] = useState("");
-
-  // console.log("MAIN", mainSocket.id);
-
-  // useEffect(() => {
-  //   if (socket) setUser(socket.id);
-  //   console.log(socket?.id);
-  // }, [socket]);
 
   const [rooms, setRooms] = useState<Array<Room>>([]);
   const onAddUser = (name: string): void => {
     socket?.emit("add_user", { name });
-    // setNickname(name);
   };
 
   socket?.off("user_added");
@@ -36,9 +27,6 @@ export default function GameContextProvider({
     console.log(user);
     setUser(user);
     socket.emit("choose_room");
-
-    // console.log(data);
-    // socket.emit("create_room", { nickname: nickname, room: "room1" });
   });
 
   socket?.off("get_rooms");
@@ -55,6 +43,10 @@ export default function GameContextProvider({
     socket?.emit("join_room", roomId);
   }
 
+  function onAsk(selectedCards: Array<string>): void {
+    socket?.emit("ask", selectedCards);
+  }
+
   socket?.off("error");
   socket?.on("error", (err: string) => {
     console.log(err);
@@ -62,7 +54,7 @@ export default function GameContextProvider({
 
   return (
     <GameContext.Provider
-      value={{ onAddUser, rooms, user, onCreateRoom, onJoin }}
+      value={{ onAddUser, rooms, user, onCreateRoom, onJoin, onAsk }}
     >
       {children}
     </GameContext.Provider>

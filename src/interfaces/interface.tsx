@@ -11,6 +11,7 @@ export interface IGameContext {
   user: User | null;
   onCreateRoom: (newRoom: Room) => void;
   onJoin: (roomId: string) => void;
+  onAsk: (selectedCards: Array<string>) => void;
 }
 
 export interface User {

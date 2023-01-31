@@ -7,19 +7,29 @@ import {useGameContext} from "../Context/Context";
 import "../Styling/Homepage.scss";
 
 function HomePage() {
+  const [show, setShow] = useState(true);
+  const [create, setCreate] = useState(true);
   const [nickName, setNickname] = useState("");
-  const rooms = [
-    {name: "room1", maxPlayers: 4, id: "1", players: ["1", "2", "3"]},
-    {name: "room2", maxPlayers: 3, id: "2", players: ["5", "6"]},
-  ];
-  const {onAddUser} = useGameContext();
+  const {onAddUser, rooms, userId} = useGameContext();
+  console.log(rooms);
 
   const handleChange = (e: React.ChangeEvent) => {
     setNickname((e.target as HTMLInputElement).value);
   };
   const handleSub = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (onAddUser) onAddUser(nickName);
+    if (onAddUser) {
+      onAddUser(nickName);
+      setShow(false);
+    }
+  };
+  const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
+    const newRoom = {
+      name: "Test",
+      roomId: "3",
+      players: [userId],
+      maxPlayers: 3,
+    };
   };
 
   return (
@@ -29,10 +39,11 @@ function HomePage() {
           <h1>Cluedo</h1>
           {/* <RxMagnifyingGlass /> */}
         </div>
-        {/* <Form onSubmit={handleSub}>
+        <Form hidden={!show} onSubmit={handleSub}>
           <Form.Group className="mb-3" controlId="input">
             <Form.Label>What is your name?</Form.Label>
             <Form.Control
+              required
               onChange={handleChange}
               value={nickName}
               type="text"
@@ -43,8 +54,8 @@ function HomePage() {
           <Button variant="primary" type="submit">
             Solve a murder
           </Button>
-        </Form> */}
-        <div className="waiting-room-container d-flex">
+        </Form>
+        <div className="waiting-room-container " hidden={show}>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -54,9 +65,14 @@ function HomePage() {
             </thead>
             <tbody>
               <>
-                {rooms.map((room) => {
+                {rooms?.map((room) => {
                   return (
-                    <tr onClick={()=>{console.log(room)}} key={room.id}>
+                    <tr
+                      onClick={() => {
+                        console.log(room);
+                      }}
+                      key={room.roomId}
+                    >
                       <td>{room.name}</td>
                       <td>
                         {room.players.length}/{room.maxPlayers}
@@ -68,7 +84,9 @@ function HomePage() {
             </tbody>
           </Table>
           <div className="button-container d-flex flex-column">
-            <Button>create Room</Button>
+            <Button variant="primary" className="new-btn">
+              create Room
+            </Button>
           </div>
         </div>
       </div>

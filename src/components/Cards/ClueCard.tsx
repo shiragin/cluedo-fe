@@ -1,29 +1,27 @@
 import React from 'react';
 import '../../Styling/SuspectCard.scss';
-// interface Props {
-//   name: string;
-//   type: string;
-//   color: string;
-//   image: string;
-// }
+import "../../Data/Clues.json";
 
-function ClueCard(): JSX.Element {
-  const name = 'Yonatan Salmon';
-  const type = 'suspect';
-  const deck = 'Evidence';
-  const img =
-    'https://res.cloudinary.com/dmy0f63gx/image/upload/v1675146408/T041TFU6DE1-U041J6GTJS3-4690e5465a74-512_f1aqiq.jpg';
+
+interface Props {
+  name: string;
+  type: string;
+  color: string;
+  image: string;
+}
+
+function ClueCard({ name, type, color, image }: Props): JSX.Element {
   const handleClick = () => {
     console.log('clicked');
   };
   return (
-    <div className={`clue-card ${type}`} onClick={handleClick}>
+    <div className={`clue-card ${type}`} onClick={handleClick} style={{ width: "200px", height: "250px" }}>
       <div className='clue-card-type'>{type.toUpperCase()}</div>
       <div className='clue-card-name'>
-        <div className='deck'>{deck}</div>
+        <div className='deck'>{color}</div>
         <div>{name}</div>
       </div>
-      <img className='clue-card-image' src={img} alt={name} />
+      <img className='clue-card-image' src={image} alt={name} style={{ width: "90px", height: "200px" }} />
     </div>
   );
 }

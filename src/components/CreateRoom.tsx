@@ -5,8 +5,14 @@ import Button from 'react-bootstrap/Button';
 import { useGameContext } from '../Context/Context';
 import '../Styling/Homepage.scss';
 
-function CreateRoom() {
-  const { rooms, user } = useGameContext();
+function CreateRoom({
+  create,
+  setCreate,
+}: {
+  create: Boolean;
+  setCreate: Function;
+}) {
+  const {rooms, user} = useGameContext();
 
   const [newRoom, setNewRoom] = useState({
     name: '',
@@ -32,11 +38,12 @@ function CreateRoom() {
   };
 
   return (
-    <div>
+    <div className="waiting-room-container ">
       <Form onSubmit={handleCreate}>
         <Form.Group className='mb-3' controlId='formBasicName'>
           <Form.Label>Name</Form.Label>
           <Form.Control
+            required
             onChange={handleChange}
             name='name'
             type='text'
@@ -54,8 +61,16 @@ function CreateRoom() {
           <option value={3}>3</option>
           <option value={4}>4</option>
         </Form.Select>
-        <Button variant='primary' type='submit'>
-          create
+        <Button className="new-btn" variant="primary" type="submit">
+          Create
+        </Button>
+        <Button
+          onClick={() => setCreate(!create)}
+          className="new-btn"
+          variant="primary"
+          type="button"
+        >
+          Cancel
         </Button>
       </Form>
     </div>

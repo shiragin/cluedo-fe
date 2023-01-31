@@ -58,7 +58,9 @@ export default function GameContextProvider({
     setRooms(roomsList);
   });
 
-  function onCreateRoom() {}
+  function onCreateRoom(newRoom: Room) {
+    socket?.emit("create_room", newRoom);
+  }
 
   return (
     <GameContext.Provider value={{ onAddUser, rooms, userId }}>

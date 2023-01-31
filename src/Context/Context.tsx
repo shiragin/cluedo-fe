@@ -1,25 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { io, Socket } from "socket.io-client";
-
-interface Room {
-  name: string;
-  roomId: string;
-  players: Array<string>;
-  maxPlayers: number;
-}
-
-interface IGameContext {
-  onAddUser: (name: string) => void;
-  rooms: Array<Room>;
-  user: User | null;
-  onCreateRoom: (newRoom: Room) => void;
-}
-
-interface User {
-  nickname: string;
-  socketId: string;
-  _id: string;
-}
+import { Room, IGameContext, User } from "../interfaces/interface";
 
 export const GameContext = createContext<Partial<IGameContext>>({});
 
@@ -52,6 +33,7 @@ export default function GameContextProvider({
 
   socket?.off("user_added");
   socket?.on("user_added", (user: User): void => {
+    console.log(user);
     setUser(user);
     socket.emit("choose_room");
 
@@ -69,8 +51,19 @@ export default function GameContextProvider({
     socket?.emit("create_room", newRoom);
   }
 
+  function onJoin(roomId: string): void {
+    socket?.emit("join_room", roomId);
+  }
+
+  socket?.off("error");
+  socket?.on("error", (err: string) => {
+    console.log(err);
+  });
+
   return (
-    <GameContext.Provider value={{ onAddUser, rooms, user, onCreateRoom }}>
+    <GameContext.Provider
+      value={{ onAddUser, rooms, user, onCreateRoom, onJoin }}
+    >
       {children}
     </GameContext.Provider>
   );

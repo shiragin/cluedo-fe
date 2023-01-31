@@ -1,16 +1,16 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 // import { RxMagnifyingGlass } from 'react-icons/rx';
-import {useGameContext} from "../Context/Context";
+import { useGameContext } from "../Context/Context";
 import "../Styling/Homepage.scss";
 
 function HomePage() {
   const [show, setShow] = useState(true);
   const [create, setCreate] = useState(true);
   const [nickName, setNickname] = useState("");
-  const {onAddUser, rooms, user} = useGameContext();
+  const { onAddUser, rooms, user, onJoin } = useGameContext();
   console.log(rooms);
 
   const handleChange = (e: React.ChangeEvent) => {
@@ -69,7 +69,7 @@ function HomePage() {
                   return (
                     <tr
                       onClick={() => {
-                        console.log(room);
+                        if (onJoin) onJoin(room.roomId);
                       }}
                       key={room.roomId}
                     >

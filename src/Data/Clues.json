@@ -1,39 +1,39 @@
 [
   {
-    "name": "Lady Scarlet",
+    "name": "Mor Mika Krengel",
     "type": "Suspect",
     "color": "Red",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158190/T041TFU6DE1-U041PS5P58W-1a69a8607260-512_flgomb.jpg"
   },
   {
-    "name": "Prof Green",
+    "name": "Zohar Suslovich",
     "type": "Suspect",
     "color": "Green",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158169/T041TFU6DE1-U041YP80GE6-285af31747d0-512_ygj0io.jpg"
   },
   {
-    "name": "Lieutenant Colonel",
+    "name": "Nimrod Milshtein",
     "type": "Suspect",
     "color": "Yellow",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675165248/img-20230131-wa0007_q2gkst.jpg"
   },
   {
-    "name": "Mrs. Heavens",
+    "name": "Lior Barak",
     "type": "Suspect",
     "color": "Blue",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158181/T041TFU6DE1-U041S5489DL-d95c78f996e9-512_paentr.jpg"
   },
   {
-    "name": "Prof Plum",
+    "name": "Yehuda Goldner",
     "type": "Suspect",
     "color": "Purple",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158161/T041TFU6DE1-U0494NXDF99-fddc9262a01a-512_fphsbt.png"
   },
   {
-    "name": "Madam White",
+    "name": "Yonatan Salmon",
     "type": "Suspect",
     "color": "White",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675146408/T041TFU6DE1-U041J6GTJS3-4690e5465a74-512_f1aqiq.jpg"
   },
   {
     "name": "Candle Stick",

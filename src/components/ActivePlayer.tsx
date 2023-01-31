@@ -5,9 +5,11 @@ import ClueCard from './Cards/ClueCard';
 function ActivePlayer(): JSX.Element {
   return (
     <div className='center'>
-      <ClueCard />
-      {/* <h1>Active Player</h1>
-        <Button variant="success">Accuse</Button>{' '} */}
+      <h1>Active Player</h1>
+      {Clues.map((clue, index) => (
+        <ClueCard key={index} name={clue.name} type={clue.type} color={clue.color} image={clue.image} />
+      ))}
+      <Button variant="success">Accuse</Button>
     </div>
   );
 }

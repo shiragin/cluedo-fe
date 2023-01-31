@@ -1,9 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useGameContext } from '../../Context/Context';
 import checkList from '../../Data/Clarifications.json';
-import AccuseButton from './AskButton';
+import Deck from '../../Data/deck.png';
 
-function Player({ display }: { display: string }): JSX.Element {
+function Player({
+  display,
+  num,
+}: {
+  display: string;
+  num: number;
+}): JSX.Element {
   console.log(checkList);
 
   interface IPlayer {
@@ -19,9 +25,11 @@ function Player({ display }: { display: string }): JSX.Element {
   //   const {clueCards, onAccuse} = useGameContext()
 
   return (
-    <div>
-      <h3>Player</h3>
-      {/* <AccuseButton /> */}
+    <div className='player'>
+      <img src={Deck} alt='A deck of cards' className={display} />
+      <div className='player-num'>
+        <span>{num}</span>
+      </div>
     </div>
   );
 }

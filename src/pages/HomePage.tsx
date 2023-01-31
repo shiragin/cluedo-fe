@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Table from 'react-bootstrap/Table';
-// import { RxMagnifyingGlass } from 'react-icons/rx';
 import { useGameContext } from '../Context/Context';
 import '../Styling/Homepage.scss';
 import CreateRoom from '../components/Rooms/CreateRoom';
@@ -31,7 +29,6 @@ function HomePage() {
       <div className='container'>
         <div className='homepage-title'>
           <h1>Cluedo</h1>
-          {/* <RxMagnifyingGlass /> */}
         </div>
         <Form hidden={!show} onSubmit={handleSub}>
           <Form.Group className='mb-3' controlId='input'>

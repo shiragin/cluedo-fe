@@ -1,6 +1,7 @@
 @import 'variables';
 
 .clue-card {
+  background-color: #efefe2;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in;
   border-radius: 0.375rem;
@@ -16,16 +17,6 @@
   }
   &:active {
     transform: scale(0.95);
-  }
-
-  &.suspect {
-    background-color: #f47445;
-  }
-  &.weapon {
-    background-color: grey;
-  }
-  &.location {
-    background-color: darkgreen;
   }
 
   &.selected {
@@ -56,7 +47,7 @@
     border-radius: 0 0.375rem 0.375rem 0;
     font-size: 1rem;
     color: $light-color;
-    padding: 1rem 0.1rem 1rem 0.2rem;
+    padding: 1rem 0rem 1rem 0.3rem;
     background-color: $primary-color;
     position: absolute;
     top: 1rem;
@@ -65,6 +56,17 @@
     transform: rotate(180deg);
     text-orientation: sideways;
 
+    &.suspect {
+      // background-color: #f47445;
+      background-color: #f86049;
+    }
+    &.weapon {
+      background-color: grey;
+    }
+    &.location {
+      background-color: darkgreen;
+    }
+
     .deck {
       font-weight: 400;
       font-size: 0.8rem;
@@ -72,8 +74,9 @@
   }
 
   &-image {
+    z-index: 9;
     background-color: $light-color;
-    width: 84%;
+    width: 82%;
     height: 100%;
     border-radius: 0 0.375rem 0.375rem 0.375rem;
     object-fit: cover;

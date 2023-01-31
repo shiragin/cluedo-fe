@@ -8,12 +8,12 @@ function GameRoomPage() {
   return (
     <div className='game-container'>
       <div className='top'>
-        <Player display={'hor'} />
+        <Player display={'up'} num={1} />
       </div>
       <div className='middle'>
-        <Player display={'ver'} />
+        <Player display={'left'} num={4} />
         <Center />
-        <Player display={'ver'} />
+        <Player display={'right'} num={2} />
       </div>
       <div className='bottom'>
         <ActivePlayer />

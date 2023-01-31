@@ -40,7 +40,7 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
       }
     >
       {/* <div className='clue-card-type'>{type.toUpperCase()}</div> */}
-      <div className='clue-card-name'>
+      <div className={`clue-card-name ${type}`}>
         {/* <div className='deck'>{color}</div> */}
         <div>{name}</div>
       </div>

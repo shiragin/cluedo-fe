@@ -25,14 +25,6 @@ function HomePage() {
       setShow(false);
     }
   };
-  // const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
-  //   const newRoom = {
-  //     name: "Test",
-  //     roomId: "3",
-  //     players: [user?.socketId],
-  //     maxPlayers: 3,
-  //   };
-  // };
 
   return (
     <div className="homepage-img">

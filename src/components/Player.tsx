@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useGameContext } from "../Context/Context";
 import checkList from "../Data/Clarifications.json";
+import AccuseButton from "./AccuseButton/AccuseButton";
 
 function Player(): JSX.Element {
   console.log(checkList);
@@ -16,13 +17,12 @@ function Player(): JSX.Element {
 
   //   const {clueCards, onAccuse} = useGameContext()
 
-  function onAccuse() {
-    console.log("This player accuse");
-  }
+
 
   return (
     <div>
-      <button onClick={onAccuse}>Accuse</button>
+      <h3>Player:</h3>
+      <AccuseButton />
     </div>
   );
 }

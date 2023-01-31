@@ -6,8 +6,10 @@ function ActivePlayer(): JSX.Element {
   return (
     <div className='center'>
       <h1>Active Player</h1>
-      <ClueCard />
-      <Button variant="success">Accuse</Button>{' '}
+      {Clues.map((clue, index) => (
+        <ClueCard key={index} name={clue.name} type={clue.type} color={clue.color} image={clue.image} />
+      ))}
+      <Button variant="success">Accuse</Button>
     </div>
   );
 }

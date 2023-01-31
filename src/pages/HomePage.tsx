@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 // import { RxMagnifyingGlass } from 'react-icons/rx';
-import { useGameContext } from "../Context/Context";
+import {useGameContext} from "../Context/Context";
 import "../Styling/Homepage.scss";
 import CreateRoom from "../components/CreateRoom";
+import WaitingRoom from "../components/WaitingRoom";
 
 function HomePage() {
   const [show, setShow] = useState(true);
   const [create, setCreate] = useState(false);
   const [nickName, setNickname] = useState("");
-  const { onAddUser, rooms, user, onJoin } = useGameContext();
+  const {onAddUser, rooms, user, onJoin} = useGameContext();
   console.log(rooms);
 
   const handleChange = (e: React.ChangeEvent) => {
@@ -56,49 +57,12 @@ function HomePage() {
             Solve a murder
           </Button>
         </Form>
-        <div className="waiting-room-container " hidden={show}>
-          {create?"ssss":"xxxxx"}
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Room Name</th>
-                <th>Players</th>
-              </tr>
-            </thead>
-            <tbody>
-              <>
-                {rooms?.map((room) => {
-                  return (
-                    <tr
-                      onClick={() => {
-                        if (onJoin) onJoin(room.roomId);
-                      }}
-                      key={room.roomId}
-                    >
-                      <td>{room.name}</td>
-                      <td>
-                        {room.players.length}/{room.maxPlayers}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </>
-            </tbody>
-          </Table>
-          <div className="button-container">
-            <Button
-              onClick={() => {
-                setCreate(!create);
-              }}
-              variant="primary"
-              className="new-btn"
-            >
-              create Room
-            </Button>
-          </div>
-        </div>
-        <div hidden={create}>
-          <CreateRoom />
+        <div hidden={show}>
+          {!create ? (
+            <WaitingRoom create={create} setCreate={setCreate} />
+          ) : (
+            <CreateRoom create={create} setCreate={setCreate} />
+          )}
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ function HomePage() {
   const [show, setShow] = useState(true);
   const [create, setCreate] = useState(true);
   const [nickName, setNickname] = useState("");
-  const {onAddUser, rooms, userId} = useGameContext();
+  const {onAddUser, rooms, user} = useGameContext();
   console.log(rooms);
 
   const handleChange = (e: React.ChangeEvent) => {
@@ -27,7 +27,7 @@ function HomePage() {
     const newRoom = {
       name: "Test",
       roomId: "3",
-      players: [userId],
+      players: [user?.socketId],
       maxPlayers: 3,
     };
   };

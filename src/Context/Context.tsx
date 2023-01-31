@@ -1,17 +1,24 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { io, Socket } from "socket.io-client";
 
-interface IGameContext {
-  onAddUser: (name: string) => void;
-  rooms: Array<Room>;
-  userId: string;
-}
-
 interface Room {
   name: string;
   roomId: string;
   players: Array<string>;
   maxPlayers: number;
+}
+
+interface IGameContext {
+  onAddUser: (name: string) => void;
+  rooms: Array<Room>;
+  user: User | null;
+  onCreateRoom: (newRoom: Room) => void;
+}
+
+interface User {
+  nickname: string;
+  socketId: string;
+  _id: string;
 }
 
 export const GameContext = createContext<Partial<IGameContext>>({});
@@ -27,15 +34,15 @@ export default function GameContextProvider({
   socket: Socket | null;
   children: any;
 }) {
-  const [userId, setUserId] = useState<string>("");
+  const [user, setUser] = useState<User | null>(null);
   // const [nickname, setNickname] = useState("");
 
   // console.log("MAIN", mainSocket.id);
 
-  useEffect(() => {
-    if (socket) setUserId(socket.id);
-    console.log(socket?.id);
-  }, [socket]);
+  // useEffect(() => {
+  //   if (socket) setUser(socket.id);
+  //   console.log(socket?.id);
+  // }, [socket]);
 
   const [rooms, setRooms] = useState<Array<Room>>([]);
   const onAddUser = (name: string): void => {
@@ -44,8 +51,8 @@ export default function GameContextProvider({
   };
 
   socket?.off("user_added");
-  socket?.on("user_added", (data: string): void => {
-    console.log(data);
+  socket?.on("user_added", (user: User): void => {
+    setUser(user);
     socket.emit("choose_room");
 
     // console.log(data);
@@ -63,7 +70,7 @@ export default function GameContextProvider({
   }
 
   return (
-    <GameContext.Provider value={{ onAddUser, rooms, userId }}>
+    <GameContext.Provider value={{ onAddUser, rooms, user, onCreateRoom }}>
       {children}
     </GameContext.Provider>
   );

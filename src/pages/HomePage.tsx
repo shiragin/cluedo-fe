@@ -6,7 +6,7 @@ import Table from 'react-bootstrap/Table';
 import { useGameContext } from '../Context/Context';
 import '../Styling/Homepage.scss';
 import CreateRoom from '../components/Rooms/CreateRoom';
-import WaitingRoom from '../components/Rooms/RoomList';
+import RoomList from '../components/Rooms/RoomList';
 
 function HomePage() {
   const [show, setShow] = useState(true);
@@ -51,7 +51,7 @@ function HomePage() {
         </Form>
         <div hidden={show}>
           {!create ? (
-            <WaitingRoom create={create} setCreate={setCreate} />
+            <RoomList create={create} setCreate={setCreate} />
           ) : (
             <CreateRoom create={create} setCreate={setCreate} />
           )}

@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { useGameContext } from '../../Context/Context';
 import '../../Styling/Homepage.scss';
 
-function WaitingRoom({
+function RoomList({
   create,
   setCreate,
 }: {
@@ -12,7 +12,7 @@ function WaitingRoom({
   setCreate: Function;
 }) {
   const { onAddUser, rooms, user, onJoin } = useGameContext();
-  const [selectedRoom, setSelectedRoom] = useState(rooms![0].roomId || '');
+  const [selectedRoom, setSelectedRoom] = useState(rooms![0]?.roomId || '');
 
   return (
     <div className='waiting-room-container'>
@@ -30,7 +30,7 @@ function WaitingRoom({
                 <tr
                   onClick={(event) => setSelectedRoom(room.roomId)}
                   key={room.roomId}
-                  className={selectedRoom === room.roomId ? 'selected' : ''}
+                  className={selectedRoom === room?.roomId ? 'selected' : ''}
                 >
                   <td>{room.name}</td>
                   <td>
@@ -67,4 +67,4 @@ function WaitingRoom({
   );
 }
 
-export default WaitingRoom;
+export default RoomList;

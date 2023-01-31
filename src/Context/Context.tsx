@@ -30,8 +30,11 @@ export default function GameContextProvider({
   const [userId, setUserId] = useState<string>("");
   // const [nickname, setNickname] = useState("");
 
+  // console.log("MAIN", mainSocket.id);
+
   useEffect(() => {
     if (socket) setUserId(socket.id);
+    console.log(socket?.id);
   }, [socket]);
 
   const [rooms, setRooms] = useState<Array<Room>>([]);
@@ -40,6 +43,7 @@ export default function GameContextProvider({
     // setNickname(name);
   };
 
+  socket?.off("user_added");
   socket?.on("user_added", (data: string): void => {
     console.log(data);
     socket.emit("choose_room");
@@ -48,13 +52,13 @@ export default function GameContextProvider({
     // socket.emit("create_room", { nickname: nickname, room: "room1" });
   });
 
+  socket?.off("get_rooms");
   socket?.on("get_rooms", (roomsList: Array<Room>) => {
+    console.log(roomsList);
     setRooms(roomsList);
   });
 
-  function onCreateRoom(){
-    
-  }
+  function onCreateRoom() {}
 
   return (
     <GameContext.Provider value={{ onAddUser, rooms, userId }}>

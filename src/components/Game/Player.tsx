@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useGameContext } from '../../Context/Context';
 import checkList from '../../Data/Clarifications.json';
-import AccuseButton from './AccuseButton';
+import AccuseButton from './AskButton';
 
 function Player({ display }: { display: string }): JSX.Element {
   console.log(checkList);

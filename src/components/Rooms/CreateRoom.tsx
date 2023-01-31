@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useGameContext } from '../Context/Context';
-import '../Styling/Homepage.scss';
+import { useGameContext } from '../../Context/Context';
+import '../../Styling/Homepage.scss';
 
 function CreateRoom({
   create,
@@ -12,7 +12,7 @@ function CreateRoom({
   create: Boolean;
   setCreate: Function;
 }) {
-  const {rooms, user} = useGameContext();
+  const { rooms, user } = useGameContext();
 
   const [newRoom, setNewRoom] = useState({
     name: '',
@@ -38,7 +38,7 @@ function CreateRoom({
   };
 
   return (
-    <div className="waiting-room-container ">
+    <div className='waiting-room-container '>
       <Form onSubmit={handleCreate}>
         <Form.Group className='mb-3' controlId='formBasicName'>
           <Form.Label>Name</Form.Label>
@@ -61,17 +61,19 @@ function CreateRoom({
           <option value={3}>3</option>
           <option value={4}>4</option>
         </Form.Select>
-        <Button className="new-btn" variant="primary" type="submit">
-          Create
-        </Button>
-        <Button
-          onClick={() => setCreate(!create)}
-          className="new-btn"
-          variant="primary"
-          type="button"
-        >
-          Cancel
-        </Button>
+        <div className='button-container'>
+          <Button
+            onClick={() => setCreate(!create)}
+            className='new-btn'
+            variant='primary'
+            type='button'
+          >
+            Cancel
+          </Button>
+          <Button className='new-btn' variant='primary' type='submit'>
+            Create
+          </Button>
+        </div>
       </Form>
     </div>
   );

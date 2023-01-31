@@ -1,11 +1,11 @@
-@import 'variables';
+@import "variables";
 
 .homepage-img {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   height: 100vh;
-  background-image: url('../Data/Background.jpg');
+  background-image: url("../Data/Background.jpg");
   .container {
     margin-top: 6rem;
     width: 50%;
@@ -24,7 +24,7 @@
       h1 {
         font-size: 4rem;
         text-align: center;
-        font-family: 'Kumbh Sans';
+        font-family: "Kumbh Sans";
         color: $primary-color;
         margin-bottom: 2.2rem;
       }
@@ -86,4 +86,33 @@
       // justify-content: center;
     }
   }
+}
+
+.new-btn {
+  width: fit-content;
+  align-self: flex-end;
+  background-color: $primary-color;
+  border: $primary-color;
+  transition: transform 0.2s ease-in;
+
+  &:active,
+  &:focus,
+  &:focus-visible {
+    background-color: $primary-color;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: $primary-color;
+  }
+
+  &:active {
+    transform: scale(0.95);
+    background-color: $primary-color !important;
+  }
+}
+
+.waiting-room-container {
+  gap: 1rem;
+  display: flex
 }

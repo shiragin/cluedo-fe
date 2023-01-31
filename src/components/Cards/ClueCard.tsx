@@ -6,6 +6,7 @@ import Weapon from '../../Data/javascript_logo.png';
 
 function ClueCard({ name, type, image }: Props): JSX.Element {
   const [selectedCards, setSelectedCards] = useState<string[]>([]);
+  const [eliminated, setEliminated] = useState<boolean>(false);
 
   const handleClick = () => {
     if (selectedCards.includes(name)) {
@@ -15,17 +16,29 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
     }
   };
 
+  function handleRightClick(e: React.MouseEvent) {
+    e.preventDefault();
+    setEliminated(!eliminated);
+  }
+
   const handleSendName = () => {
     localStorage.setItem('selectedCards', JSON.stringify(selectedCards));
   };
 
   return (
     <div
-      className={`clue-card ${type}`}
+      // className={`clue-card ${type}`}
       onClick={handleClick}
-      style={{
-        border: `6px solid ${selectedCards.includes(name) ? 'green' : 'black'}`,
-      }}
+      onContextMenu={(e) => handleRightClick(e)}
+      className={
+        selectedCards.includes(name) && !eliminated
+          ? `clue-card ${type} selected`
+          : selectedCards.includes(name) && eliminated
+          ? `clue-card ${type} selected greyed`
+          : eliminated
+          ? `clue-card ${type} greyed`
+          : `clue-card ${type}`
+      }
     >
       <div className='clue-card-type'>{type.toUpperCase()}</div>
       <div className='clue-card-name'>

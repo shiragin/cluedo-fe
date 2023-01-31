@@ -3,7 +3,7 @@ import Player from "../components/Player";
 import Center from "../components/Center";
 import ActivePlayer from "../components/ActivePlayer";
 
-function GameRoom() {
+function GameRoomPage() {
   return (
     <div>
       GameRoom
@@ -14,4 +14,4 @@ function GameRoom() {
   );
 }
 
-export default GameRoom;
+export default GameRoomPage;

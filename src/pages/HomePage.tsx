@@ -9,7 +9,7 @@ import CreateRoom from "../components/CreateRoom";
 
 function HomePage() {
   const [show, setShow] = useState(true);
-  const [create, setCreate] = useState(true);
+  const [create, setCreate] = useState(false);
   const [nickName, setNickname] = useState("");
   const {onAddUser, rooms, user} = useGameContext();
   console.log(rooms);
@@ -24,14 +24,14 @@ function HomePage() {
       setShow(false);
     }
   };
-  const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
-    const newRoom = {
-      name: "Test",
-      roomId: "3",
-      players: [user?.socketId],
-      maxPlayers: 3,
-    };
-  };
+  // const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
+  //   const newRoom = {
+  //     name: "Test",
+  //     roomId: "3",
+  //     players: [user?.socketId],
+  //     maxPlayers: 3,
+  //   };
+  // };
 
   return (
     <div className="homepage-img">
@@ -40,7 +40,7 @@ function HomePage() {
           <h1>Cluedo</h1>
           {/* <RxMagnifyingGlass /> */}
         </div>
-        {/* <Form hidden={!show} onSubmit={handleSub}>
+        <Form hidden={!show} onSubmit={handleSub}>
           <Form.Group className="mb-3" controlId="input">
             <Form.Label>What is your name?</Form.Label>
             <Form.Control
@@ -55,8 +55,9 @@ function HomePage() {
           <Button variant="primary" type="submit">
             Solve a murder
           </Button>
-        </Form> */}
-        {/* <div className="waiting-room-container " hidden={show}>
+        </Form>
+        <div className="waiting-room-container " hidden={show}>
+          {create?"ssss":"xxxxx"}
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -84,13 +85,21 @@ function HomePage() {
               </>
             </tbody>
           </Table>
-          <div className="button-container d-flex flex-column">
-            <Button variant="primary" className="new-btn">
+          <div className="button-container">
+            <Button
+              onClick={() => {
+                setCreate(!create);
+              }}
+              variant="primary"
+              className="new-btn"
+            >
               create Room
             </Button>
           </div>
-        </div> */}
-        <CreateRoom />
+        </div>
+        <div hidden={create}>
+          <CreateRoom />
+        </div>
       </div>
     </div>
   );

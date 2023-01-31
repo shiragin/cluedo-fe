@@ -1,41 +1,43 @@
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { useGameContext } from "../Context/Context";
-import "../Styling/HomePage.css";
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+// import { RxMagnifyingGlass } from 'react-icons/rx';
+import { useGameContext } from '../Context/Context';
+import '../Styling/Homepage.scss';
 
-function HomePage() {
-  const [nickName, setNickname] = useState("");
+function Homepage() {
+  const [nickName, setNickname] = useState('');
 
   const { onAddUser } = useGameContext();
 
-  const handleChange = (e: any) => {
-    setNickname(e.target.value);
+  const handleChange = (e: React.ChangeEvent) => {
+    setNickname((e.target as HTMLInputElement).value);
   };
-  const handleSub = (e: any) => {
+  const handleSub = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onAddUser(nickName);
+    if (onAddUser) onAddUser(nickName);
   };
 
   return (
-    <div>
-      <div className="App">
-        <h1>Cluedo!</h1>
-      </div>
-      <div className="form">
+    <div className='homepage-img'>
+      <div className='container'>
+        <div className='homepage-title'>
+          <h1>Cluedo</h1>
+          {/* <RxMagnifyingGlass /> */}
+        </div>
         <Form onSubmit={handleSub}>
-          <Form.Group className="mb-3" controlId="input">
-            <Form.Label>What is Your Name</Form.Label>
+          <Form.Group className='mb-3' controlId='input'>
+            <Form.Label>What is your name?</Form.Label>
             <Form.Control
               onChange={handleChange}
               value={nickName}
-              type="text"
-              placeholder="Enter Nickname"
+              type='text'
+              placeholder='Enter nickname...'
             />
-            <Form.Text className="text-muted"></Form.Text>
+            <Form.Text className='text-muted'></Form.Text>
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
+          <Button variant='primary' type='submit'>
+            Solve a murder
           </Button>
         </Form>
       </div>
@@ -43,4 +45,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Homepage;

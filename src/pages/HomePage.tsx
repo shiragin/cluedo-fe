@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { useGameContext } from '../Context/Context';
 import '../Styling/Homepage.scss';
 
-function Homepage() {
+function HomePage() {
   const [nickName, setNickname] = useState('');
 
   const { onAddUser } = useGameContext();
@@ -45,4 +45,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomePage;

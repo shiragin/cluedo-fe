@@ -1,10 +1,8 @@
-import React from 'react';
+import { useState } from 'react';
+// import Button from 'react-bootstrap/Button';
 import '../../Styling/SuspectCard.scss';
 import '../../Data/Clues.json';
 import Weapon from '../../Data/javascript_logo.png';
-// import Location from '../../Data/kitche.jpg';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 
 interface Props {
   name: string;
@@ -46,9 +44,6 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
       ) : (
         <img className='clue-card-image' src={Weapon} alt={name} />
       )}
-      {/* <Button className='.new-btn' onClick={handleSendName}>
-        Ask
-      </Button> */}
     </div>
   );
 }

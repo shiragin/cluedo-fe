@@ -110,14 +110,32 @@
     transform: scale(0.95);
     background-color: $primary-color !important;
   }
+  &:disabled {
+    background-color: $primary-color;
+    opacity: 0.4;
+  }
 }
 
 .waiting-room-container {
   gap: 1rem;
   display: flex;
-}
+  flex-direction: column;
 
+  tr {
+    cursor: pointer;
+    &.selected {
+      background-color: $primary-color;
+      color: $light-color;
+    }
+  }
+}
+select {
+  background-color: transparent;
+  margin-bottom: 2rem;
+}
 .button-container {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
 }

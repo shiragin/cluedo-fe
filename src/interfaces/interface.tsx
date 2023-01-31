@@ -12,6 +12,7 @@ export interface IGameContext {
   onCreateRoom: (newRoom: Room) => void;
   onJoin: (roomId: string) => void;
   onAsk: (selectedCards: Array<string>) => void;
+  onGoBack: () => void;
 }
 
 export interface User {

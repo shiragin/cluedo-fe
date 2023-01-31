@@ -52,9 +52,24 @@ export default function GameContextProvider({
     console.log(err);
   });
 
+  socket?.off("player_joined");
+  socket?.on("player_joined", (data: { room: Room; message: string }): void => {
+    console.log(data.room);
+    console.log(data.message);
+  });
+
+  socket?.off("player_quit");
+  socket?.on("player_quit", (message: string): void => {
+    console.log(message);
+  });
+
+  function onGoBack(): void {
+    socket?.emit("player_left");
+  }
+
   return (
     <GameContext.Provider
-      value={{ onAddUser, rooms, user, onCreateRoom, onJoin, onAsk }}
+      value={{ onAddUser, rooms, user, onCreateRoom, onJoin, onAsk, onGoBack }}
     >
       {children}
     </GameContext.Provider>

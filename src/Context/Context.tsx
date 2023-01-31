@@ -1,7 +1,5 @@
-import React, { createContext, useContext } from 'react';
-import { io } from 'socket.io-client';
-
-const socket = io('http://localhost:8080');
+import React, { createContext, useContext } from "react";
+import { io, Socket } from "socket.io-client";
 
 interface IGameContext {
   onAddUser: (name: string) => void;
@@ -13,14 +11,20 @@ export function useGameContext() {
   return useContext(GameContext);
 }
 
-export default function GameContextProvider({ children }: { children: any }) {
-  // socket.on("reply", (args) => {
-  //   console.log(args);
-  // });
-
+export default function GameContextProvider({
+  socket,
+  children,
+}: {
+  socket: Socket | null;
+  children: any;
+}) {
   const onAddUser = (name: string): void => {
-    socket.emit('addUser', name);
+    socket?.emit("add_user", { name });
   };
+
+  socket?.on("user_added", (data: string): void => {
+    console.log(data);
+  });
 
   return (
     <GameContext.Provider value={{ onAddUser }}>

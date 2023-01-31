@@ -3,6 +3,14 @@ import { io, Socket } from "socket.io-client";
 
 interface IGameContext {
   onAddUser: (name: string) => void;
+  rooms: Array<Room>;
+}
+
+interface Room {
+  name: string;
+  id: string;
+  players: Array<string>;
+  maxPlayers: number;
 }
 
 export const GameContext = createContext<Partial<IGameContext>>({});
@@ -19,6 +27,7 @@ export default function GameContextProvider({
   children: any;
 }) {
   const [nickname, setNickname] = useState("");
+  const [rooms, setRooms] = useState<Array<Room>>([]);
   const onAddUser = (name: string): void => {
     socket?.emit("add_user", { name });
     setNickname(name);
@@ -26,11 +35,18 @@ export default function GameContextProvider({
 
   socket?.on("user_added", (data: string): void => {
     console.log(data);
-    socket.emit("create_room", { nickname: nickname, room: "room1" });
+    socket.emit("choose_room");
+
+    // console.log(data);
+    // socket.emit("create_room", { nickname: nickname, room: "room1" });
+  });
+
+  socket?.on("get_rooms", (roomsList: Array<Room>) => {
+    setRooms(roomsList);
   });
 
   return (
-    <GameContext.Provider value={{ onAddUser }}>
+    <GameContext.Provider value={{ onAddUser, rooms }}>
       {children}
     </GameContext.Provider>
   );

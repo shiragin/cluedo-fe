@@ -1,10 +1,10 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import {useGameContext} from "../../Context/Context";
+import { useGameContext } from "../../Context/Context";
 import "../../Styling/Homepage.scss";
 
-function Queue({queue, setQueue}: {queue: Boolean; setQueue: Function}) {
-  const {currentRoom, user, onLeave} = useGameContext();
+function Queue({ queue, setQueue }: { queue: Boolean; setQueue: Function }) {
+  const { currentRoom, user, onLeave } = useGameContext();
   const [ready, setReady] = useState(false);
   const [readyPlayers, setReadyPlayers] = useState<string[]>([]);
 

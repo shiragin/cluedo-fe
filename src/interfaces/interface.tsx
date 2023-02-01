@@ -29,6 +29,8 @@ export interface IGameContext {
   onLeave: () => void;
   ShuffleMurderCard: () => Clue[];
   selectedCards: string[];
+  isAsked: boolean;
+  setIsAsked: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedCards: React.Dispatch<React.SetStateAction<string[]>>;
 }
 

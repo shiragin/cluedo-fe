@@ -31,6 +31,8 @@ export interface IGameContext {
   selectedCards: string[];
   isAsked: boolean;
   setIsAsked: React.Dispatch<React.SetStateAction<boolean>>;
+  isAccuse: boolean;
+  setIsAccuse: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedCards: React.Dispatch<React.SetStateAction<string[]>>;
   onReady: () => void;
   readyPlayers: string[];
@@ -56,6 +58,12 @@ export interface Props {
 export interface Game {
   roomId: string;
   name: string;
-  players: [{ playerId: string; playerNickname: string; role: string }];
+  players: {
+    playerId: string;
+    playerNickname: string;
+    role: string;
+    clues: Clue[];
+  }[];
+
   maxPlayers: number;
 }

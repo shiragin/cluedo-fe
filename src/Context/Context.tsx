@@ -146,8 +146,8 @@ export default function GameContextProvider({
   });
 
   socket?.off("player_quit");
-  socket?.on("player_quit", (data: { room: Room; message: string }): void => {
-    setCurrentRoom(data.room);
+  socket?.on("player_quit", (room): void => {
+    setCurrentRoom(room);
   });
 
   function onLeave(): void {

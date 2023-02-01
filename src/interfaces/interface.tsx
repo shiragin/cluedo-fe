@@ -35,8 +35,8 @@ export interface IGameContext {
   setReadyPlayers: React.Dispatch<React.SetStateAction<string[]>>;
   onStart: () => void;
   gameStarted: boolean;
-  game: {};
-  setGame: React.Dispatch<React.SetStateAction<{}>>;
+  game: Game | null;
+  setGame: React.Dispatch<React.SetStateAction<Game | null>>;
 }
 
 export interface User {
@@ -49,4 +49,11 @@ export interface Props {
   type: string;
   color: string;
   image: string;
+}
+
+export interface Game {
+  roomId: string;
+  name: string;
+  players: [{ playerId: string; playerNickname: string; role: string }];
+  maxPlayers: number;
 }

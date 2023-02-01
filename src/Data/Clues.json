@@ -2,84 +2,84 @@
   {
     "id": 1,
     "name": "Mor Mika Krengel",
-    "type": "suspect",
+    "cardType": "suspect",
     "color": "Red",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158190/T041TFU6DE1-U041PS5P58W-1a69a8607260-512_flgomb.jpg"
   },
   {
     "id": 2,
     "name": "Zohar Suslovich",
-    "type": "suspect",
+    "cardType": "suspect",
     "color": "Green",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158169/T041TFU6DE1-U041YP80GE6-285af31747d0-512_ygj0io.jpg"
   },
   {
     "id": 3,
     "name": "Amit Bourmad",
-    "type": "suspect",
+    "cardType": "suspect",
     "color": "Yellow",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675258846/image_2_ftkkkw.png"
   },
   {
     "id": 4,
     "name": "Lior Barak",
-    "type": "suspect",
+    "cardType": "suspect",
     "color": "Blue",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158181/T041TFU6DE1-U041S5489DL-d95c78f996e9-512_paentr.jpg"
   },
   {
     "id": 5,
     "name": "Yehuda Goldner",
-    "type": "suspect",
+    "cardType": "suspect",
     "color": "Purple",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158161/T041TFU6DE1-U0494NXDF99-fddc9262a01a-512_fphsbt.png"
   },
   {
     "id": 6,
     "name": "Yonatan Salmon",
-    "type": "suspect",
+    "cardType": "suspect",
     "color": "White",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675146408/T041TFU6DE1-U041J6GTJS3-4690e5465a74-512_f1aqiq.jpg"
   },
   {
     "id": 7,
     "name": "JavaScript",
-    "type": "weapon",
+    "cardType": "weapon",
     "color": "Gray",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185119/js_lcg0q8.png"
   },
   {
     "id": 8,
     "name": "CSS",
-    "type": "weapon",
+    "cardType": "weapon",
     "color": "Gray",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185023/css_wvrebb.png"
   },
   {
     "id": 9,
     "name": "HTML",
-    "type": "weapon",
+    "cardType": "weapon",
     "color": "Gray",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185016/html_gufguf.png"
   },
   {
     "id": 10,
     "name": "Classroom",
-    "type": "location",
+    "cardType": "location",
     "color": "Dark Green",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185514/WhatsApp_Image_2023-01-31_at_18.58.46_wii6bo.jpg"
   },
   {
     "id": 11,
     "name": "Rooftop",
-    "type": "location",
+    "cardType": "location",
     "color": "Dark Green",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675258840/WhatsApp_Image_2023-02-01_at_15.35.55_cqdecj.jpg"
   },
   {
     "id": 12,
     "name": "Kitchen",
-    "type": "location",
+    "cardType": "location",
     "color": "Dark Green",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185495/WhatsApp_Image_2023-01-31_at_18.58.45_2_luy9ed.jpg"
   }

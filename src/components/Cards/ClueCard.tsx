@@ -4,7 +4,7 @@ import { useGameContext } from '../../Context/Context';
 import '../../Styling/SuspectCard.scss';
 import '../../Data/Clues.json';
 
-function ClueCard({ name, type, image }: Props): JSX.Element {
+function ClueCard({ name, cardType, image }: Props): JSX.Element {
   const [eliminated, setEliminated] = useState<boolean>(false);
   const { selectedCards, setSelectedCards } = useGameContext();
 
@@ -18,8 +18,7 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
       }
   };
 
-  useEffect(() => {
-  }, [selectedCards]);
+  useEffect(() => {}, [selectedCards]);
 
   function handleRightClick(e: React.MouseEvent) {
     e.preventDefault();
@@ -36,16 +35,16 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
       onContextMenu={(e) => handleRightClick(e)}
       className={
         selectedCards?.includes(name) && !eliminated
-          ? `clue-card ${type} selected`
+          ? `clue-card ${cardType} selected`
           : selectedCards?.includes(name) && eliminated
-          ? `clue-card ${type} selected greyed`
+          ? `clue-card ${cardType} selected greyed`
           : eliminated
-          ? `clue-card ${type} greyed`
-          : `clue-card ${type}`
+          ? `clue-card ${cardType} greyed`
+          : `clue-card ${cardType}`
       }
     >
       {/* <div className='clue-card-type'>{type.toUpperCase()}</div> */}
-      <div className={`clue-card-name ${type}`}>
+      <div className={`clue-card-name ${cardType}`}>
         {/* <div className='deck'>{color}</div> */}
         <div>{name}</div>
       </div>

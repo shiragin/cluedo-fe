@@ -31,13 +31,13 @@ export default function GameContextProvider({
     const pickedTypes = new Set<string>();
 
     Clues.forEach((clue: Clue) => {
-      if (!pickedTypes.has(clue.type)) {
+      if (!pickedTypes.has(clue.cardType)) {
         const filteredClues: Clue[] = Clues.filter(
-          (clueInner: Clue) => clueInner.type === clue.type
+          (clueInner: Clue) => clueInner.cardType === clue.cardType
         );
         const randomIndex = Math.floor(Math.random() * filteredClues.length);
         cards.push(filteredClues[randomIndex]);
-        pickedTypes.add(clue.type);
+        pickedTypes.add(clue.cardType);
       }
     });
     return cards;
@@ -87,6 +87,12 @@ export default function GameContextProvider({
     console.log('NEW', newGame);
     socket?.emit('send_clues', newGame);
   }
+
+  socket?.off('clues_sent');
+  socket?.on('clues_sent', (room: Room) => {
+    console.log('wowowowowowowow');
+    setCurrentRoom(room);
+  });
 
   // entering the room queue
   socket?.off('enter_queue');

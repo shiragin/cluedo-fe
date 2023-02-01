@@ -26,7 +26,7 @@ function ActivePlayer({
             <ClueCard
               key={index}
               name={clue.name}
-              type={clue.type}
+              cardType={clue.cardType}
               color={clue.color}
               image={clue.image}
             />
@@ -37,7 +37,7 @@ function ActivePlayer({
             <ClueCard
               key={index}
               name={clue.name}
-              type={clue.type}
+              cardType={clue.cardType}
               color={clue.color}
               image={clue.image}
             />

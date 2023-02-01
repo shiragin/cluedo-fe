@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 .clue-card {
   background-color: #efefe2;
@@ -28,8 +28,8 @@
     filter: alpha(opacity=40);
   }
 
-  &-type {
-    font-family: "Kumbh Sans";
+  &-cardType {
+    font-family: 'Kumbh Sans';
     background-color: transparent;
     position: absolute;
     top: 1rem;
@@ -102,7 +102,7 @@
 }
 .sub-ribbon:before,
 .sub-ribbon:after {
-  content: "";
+  content: '';
   position: absolute;
 }
 .sub-ribbon:before {

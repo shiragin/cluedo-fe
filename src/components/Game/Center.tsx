@@ -1,12 +1,12 @@
-import Cluedo from "../../Data/Clue.jpg";
-import { useGameContext } from "../../Context/Context";
-import { useEffect, useState } from "react";
-import  Clues from "../../Data/Clues.json"
-import ClueCard from "../Cards/ClueCard";
+import Cluedo from '../../Data/Clue.jpg';
+import { useGameContext } from '../../Context/Context';
+import { useEffect, useState } from 'react';
+import Clues from '../../Data/Clues.json';
+import ClueCard from '../Cards/ClueCard';
 interface Clue {
   id: number;
   name: string;
-  type: string;
+  cardType: string;
   color: string;
   image: string;
 }
@@ -30,18 +30,21 @@ const Center: React.FC<Props> = (props: Props) => {
   }, [isAsked, selectedCards]);
 
   return (
-    <div className="center">
+    <div className='center'>
       {isAsked ? (
-        <div className="selected-card">
+        <div className='selected-card'>
           {objectsArray.map((object, index) => (
-             <ClueCard key = {index} name={object.name}
-             type={object.type}
-             color={object.color}
-             image={object.image}/>
+            <ClueCard
+              key={index}
+              name={object.name}
+              cardType={object.cardType}
+              color={object.color}
+              image={object.image}
+            />
           ))}
         </div>
       ) : (
-        <img src={Cluedo} className="clue" alt="The murder case" />
+        <img src={Cluedo} className='clue' alt='The murder case' />
       )}
     </div>
   );

@@ -11,7 +11,7 @@ export interface Room {
 export interface Clue {
   id: number;
   name: string;
-  type: string;
+  cardType: string;
   color: string;
   image: string;
 }
@@ -51,7 +51,7 @@ export interface User {
 }
 export interface Props {
   name: string;
-  type: string;
+  cardType: string;
   color: string;
   image: string;
 }

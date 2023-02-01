@@ -9,45 +9,79 @@ import ActivePlayer from '../components/Game/ActivePlayer';
 import '../Styling/GameRoom.scss';
 
 function GameRoomPage() {
-  const { ShuffleMurderCard, game } = useGameContext();
+  const { ShuffleMurderCard, game, sendClues, setGame } = useGameContext();
   const [murderCards, setMurderCards] = useState<Clue[]>([]);
   const [clueCards, setClueCards] = useState<Clue[]>([]);
   const [activePlayer, setActivePlayer] = useState('');
   const [askedPlayer, setAskedPlayer] = useState('');
 
   function giveClueCards(clues: Clue[]) {
-    console.log('HOW MANY', game?.players);
-
     const shuffledCards = _.shuffle(clues);
-    if (game!.players.length !== undefined) {
-      if (game?.players?.length === 2) {
-        game.players[0].clues = [
-          clues[0],
-          clues[1],
-          clues[2],
-          clues[3],
-          clues[8],
-        ];
-        game.players[1].clues = [
-          clues[4],
-          clues[5],
-          clues[6],
-          clues[7],
-          clues[8],
-        ];
-      } else if (game?.players?.length === 3) {
-        game.players[0].clues = [clues[0], clues[1], clues[2]];
-        game.players[1].clues = [clues[3], clues[4], clues[5]];
-        game.players[2].clues = [clues[6], clues[7], clues[8]];
-      } else {
-        game!.players[0].clues = [clues[0], clues[1], clues[8]];
-        game!.players[1].clues = [clues[2], clues[3], clues[8]];
-        game!.players[2].clues = [clues[4], clues[5], clues[8]];
-        game!.players[3].clues = [clues[6], clues[7], clues[8]];
+    if (game && game?.players)
+      if (game?.players.length !== undefined) {
+        if (game?.players?.length === 2) {
+          game.players[0].clues = [
+            shuffledCards[0],
+            shuffledCards[1],
+            shuffledCards[2],
+            shuffledCards[3],
+            shuffledCards[8],
+          ];
+          game.players[1].clues = [
+            shuffledCards[4],
+            shuffledCards[5],
+            shuffledCards[6],
+            shuffledCards[7],
+            shuffledCards[8],
+          ];
+        } else if (game?.players?.length === 3) {
+          game.players[0].clues = [
+            shuffledCards[0],
+            shuffledCards[1],
+            shuffledCards[2],
+          ];
+          game.players[1].clues = [
+            shuffledCards[3],
+            shuffledCards[4],
+            shuffledCards[5],
+          ];
+          game.players[2].clues = [
+            shuffledCards[6],
+            shuffledCards[7],
+            shuffledCards[8],
+          ];
+        } else {
+          game!.players[0].clues = [
+            shuffledCards[0],
+            shuffledCards[1],
+            shuffledCards[8],
+          ];
+          game!.players[1].clues = [
+            shuffledCards[2],
+            shuffledCards[3],
+            shuffledCards[8],
+          ];
+          game!.players[2].clues = [
+            shuffledCards[4],
+            shuffledCards[5],
+            shuffledCards[8],
+          ];
+          game!.players[3].clues = [
+            shuffledCards[6],
+            shuffledCards[7],
+            shuffledCards[8],
+          ];
+        }
       }
-    }
-    console.log('SHUFFLE', game);
+    if (sendClues && game) sendClues(game);
   }
+
+  useEffect(() => {
+    console.log(game, 'fgkldklgdj');
+    if (!game && setGame) {
+      setGame(JSON.parse(localStorage.getItem('game')!));
+    }
+  }, [game]);
 
   useEffect(() => {
     let newMurderCards: Clue[];
@@ -55,9 +89,11 @@ function GameRoomPage() {
       newMurderCards = ShuffleMurderCard();
       setMurderCards(newMurderCards);
 
-      const newClueCards = Clues.filter(
+      const newClueCards = Clues?.filter(
         (elem) => !newMurderCards.find(({ id }) => elem.id === id)
       );
+
+      console.log(newClueCards);
 
       setClueCards(newClueCards);
       giveClueCards(newClueCards);

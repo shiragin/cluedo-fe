@@ -10,7 +10,6 @@ const AskButton = () => {
   function onAskHandler() {
     if (setIsAsked) {
       setIsAsked(true);
-      console.log(selectedCards);
       if (onAsk && selectedCards) onAsk(selectedCards);
     }
   }

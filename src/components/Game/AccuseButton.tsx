@@ -15,6 +15,8 @@ const AccuseButton = () => {
     }
   }
 
+  console.log('isAccuse: ', isAccuse);
+  
   return (
     <Button className='new-btn' onClick={onAccuse}>
       <ImHammer2 /> <span>Accuse</span>

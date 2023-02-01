@@ -6,22 +6,31 @@ import { useEffect } from 'react';
 
 const ModalAccuse = () => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { isAccuse, setIsAccuse } = useGameContext();
-  
+
+
   useEffect(() => {
     if (isAccuse) {
       setShow(true);
     }
+
   }, [isAccuse]);
+
+  useEffect(() => {
+    if(show === false) {
+        if(setIsAccuse){
+            setIsAccuse(false);
+        }
+    }
+}, [show]);
 
   return (
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Choose one weapon, suspect and location</Modal.Title>
+          <Modal.Title>Choose one weapon, one suspect and one location</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>

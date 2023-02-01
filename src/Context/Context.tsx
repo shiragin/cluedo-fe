@@ -22,6 +22,9 @@ export default function GameContextProvider({
   const [rooms, setRooms] = useState<Array<Room>>([]);
   const [currentRoom, setCurrentRoom] = useState<Room | null>(null);
 
+  const [readyPlayers, setReadyPlayers] = useState<string[]>([]);
+  const [gameStarted, setGameStarted] = useState(false);
+
   const ShuffleMurderCard = (): Clue[] => {
     const cards: Clue[] = [];
     const pickedTypes = new Set<string>();
@@ -80,6 +83,30 @@ export default function GameContextProvider({
     setCurrentRoom(room);
   });
 
+  function onReady(): void {
+    socket?.emit('ready', { user, currentRoom });
+    setReadyPlayers([...readyPlayers, user!.socketId]);
+  }
+  socket?.off('player_ready');
+  socket?.on('player_ready', (playerId: string) => {
+    setReadyPlayers([...readyPlayers, playerId]);
+  });
+
+  function onStart(): void {
+    socket?.emit('start_game', currentRoom?.roomId);
+  }
+
+  socket?.off('game_started');
+  socket?.on('game_started', (): void => {
+    console.log('wowowow');
+    setGameStarted(true);
+  });
+
+  // useEffect(() => {
+  //   if (currentRoom?.players.length === readyPlayers.length) {
+  //   }
+  // }, [readyPlayers]);
+
   function onAsk(selectedCards: Array<string>): void {
     socket?.emit("ask", {selectedCards, currentRoom});
   }
@@ -121,6 +148,11 @@ export default function GameContextProvider({
         ShuffleMurderCard,
         selectedCards,
         setSelectedCards,
+        onReady,
+        readyPlayers,
+        setReadyPlayers,
+        onStart,
+        gameStarted,
       }}
     >
       {children}

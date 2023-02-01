@@ -21,12 +21,6 @@ function CreateRoom({
     maxPlayers: 4,
   });
 
-  // useEffect(() => {
-  //   if (user) {
-  //     setNewRoom({ ...newRoom, players: [user?.socketId, user?.nickname] });
-  //   }
-  // }, [user]);
-
   const handleChange = (e: React.ChangeEvent): void => {
     const target = e.target as HTMLInputElement;
     setNewRoom({ ...newRoom, [target.name]: target.value });

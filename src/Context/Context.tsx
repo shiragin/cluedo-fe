@@ -61,6 +61,8 @@ export default function GameContextProvider({
     socket?.emit('choose_room');
   }
 
+  const [isAsked, setIsAsked] = useState<boolean>(false);
+
   // Get room list from BE socket
   socket?.off('get_rooms');
   socket?.on('get_rooms', (roomsList: Array<Room>) => {
@@ -108,6 +110,8 @@ export default function GameContextProvider({
 
   function onAsk(selectedCards: Array<string>): void {
     socket?.emit('ask', { selectedCards, currentRoom });
+    console.log("yes", selectedCards);
+
   }
 
   socket?.off('error');
@@ -133,6 +137,8 @@ export default function GameContextProvider({
     <GameContext.Provider
       value={{
         onAddUser,
+        isAsked,
+        setIsAsked,
         rooms,
         user,
         setUser,

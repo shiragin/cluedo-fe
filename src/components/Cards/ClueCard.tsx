@@ -3,10 +3,12 @@ import { Props } from '../../interfaces/interface';
 import { useGameContext } from '../../Context/Context';
 import '../../Styling/SuspectCard.scss';
 import '../../Data/Clues.json';
+import Ribbon from './Ribbon';
 
-function ClueCard({ name, cardType, image }: Props): JSX.Element {
+function ClueCard({ name, cardType, image, myClues }: Props): JSX.Element {
   const [eliminated, setEliminated] = useState<boolean>(false);
   const { selectedCards, setSelectedCards } = useGameContext();
+  const [clue, setClue] = useState(false);
 
   const handleClick = () => {
     if (selectedCards && setSelectedCards)
@@ -18,7 +20,7 @@ function ClueCard({ name, cardType, image }: Props): JSX.Element {
       }
   };
 
-  useEffect(() => {}, [selectedCards]);
+  useEffect(() => {}, []);
 
   function handleRightClick(e: React.MouseEvent) {
     e.preventDefault();
@@ -28,6 +30,11 @@ function ClueCard({ name, cardType, image }: Props): JSX.Element {
   const handleSendName = () => {
     localStorage.setItem('selectedCards', JSON.stringify(selectedCards));
   };
+
+  useEffect(() => {
+    const clueNames = myClues.map((clue) => clue.name);
+    if (clueNames.includes(name)) setClue(true);
+  });
 
   return (
     <div
@@ -43,12 +50,11 @@ function ClueCard({ name, cardType, image }: Props): JSX.Element {
           : `clue-card ${cardType}`
       }
     >
-      {/* <div className='clue-card-type'>{type.toUpperCase()}</div> */}
       <div className={`clue-card-name ${cardType}`}>
-        {/* <div className='deck'>{color}</div> */}
         <div>{name}</div>
       </div>
       <img className='clue-card-image' src={image} alt={name} />
+      {clue && <Ribbon />}
     </div>
   );
 }

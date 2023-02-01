@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGameContext } from '../../Context/Context';
+import { Props, Clue } from '../../interfaces/interface';
 import Clues from '../../Data/Clues.json';
 import ClueCard from '../Cards/ClueCard';
 import AccuseButton from './AccuseButton';
@@ -12,7 +13,18 @@ function ActivePlayer({
   activePlayer: string;
   askedPlayer: string;
 }): JSX.Element {
-  const { user } = useGameContext();
+  const { user, game } = useGameContext();
+  const [myClues, setMyClues] = useState<Clue[]>([]);
+
+  useEffect(() => {
+    if (game && user) {
+      const player = game.players.filter(
+        (player) => player.playerId === user.id
+      );
+      const { clues } = player[0];
+      setMyClues(clues);
+    }
+  });
 
   return (
     <div className='active-player'>
@@ -29,6 +41,7 @@ function ActivePlayer({
               cardType={clue.cardType}
               color={clue.color}
               image={clue.image}
+              myClues={myClues}
             />
           ))}
         </div>
@@ -40,6 +53,7 @@ function ActivePlayer({
               cardType={clue.cardType}
               color={clue.color}
               image={clue.image}
+              myClues={myClues}
             />
           ))}
         </div>

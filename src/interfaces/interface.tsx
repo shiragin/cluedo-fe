@@ -54,6 +54,7 @@ export interface Props {
   cardType: string;
   color: string;
   image: string;
+  myClues: Clue[];
 }
 
 export interface Game {

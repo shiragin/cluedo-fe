@@ -162,7 +162,10 @@ select {
       margin-top: 0;
     }
   }
-  button {
-    margin-top: 1rem;
+  .button-container {
+    align-self: flex-end;
+    button {
+      margin-top: 1rem;
+    }
   }
 }

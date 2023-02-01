@@ -8,7 +8,7 @@ import ActivePlayer from '../components/Game/ActivePlayer';
 import '../Styling/GameRoom.scss';
 
 function GameRoomPage() {
-  const { ShuffleMurderCard } = useGameContext();
+  const { ShuffleMurderCard, game } = useGameContext();
   const [murderCards, setMurderCards] = useState<Clue[]>([]);
   const [clueCards, setClueCards] = useState<Clue[]>([]);
 
@@ -23,10 +23,10 @@ function GameRoomPage() {
       );
 
       setClueCards(newClueCards);
-      console.log('Murder', newMurderCards);
-      console.log('Clues', newClueCards);
     }
   }, []);
+
+  console.log('game', game);
 
   return (
     <div className='game-container'>

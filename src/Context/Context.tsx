@@ -61,7 +61,7 @@ export default function GameContextProvider({
   });
 
   function onAsk(selectedCards: Array<string>): void {
-    socket?.emit("ask", selectedCards);
+    socket?.emit("ask", { selectedCards, currentRoom });
   }
 
   socket?.off("error");
@@ -71,17 +71,18 @@ export default function GameContextProvider({
 
   socket?.off("player_joined");
   socket?.on("player_joined", (data: { room: Room; message: string }): void => {
-    console.log(data.room);
-    console.log(data.message);
+    setCurrentRoom(data.room);
   });
 
   socket?.off("player_quit");
-  socket?.on("player_quit", (message: string): void => {
-    console.log(message);
+  socket?.on("player_quit", (data: { room: Room; message: string }): void => {
+    console.log(data.message);
+    console.log(data.room);
+    setCurrentRoom(data.room);
   });
 
   function onLeave(): void {
-    socket?.emit("player_left");
+    socket?.emit("player_left", { room: currentRoom, user });
   }
 
   return (

@@ -19,7 +19,6 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
   };
 
   useEffect(() => {
-    console.log(selectedCards);
   }, [selectedCards]);
 
   function handleRightClick(e: React.MouseEvent) {

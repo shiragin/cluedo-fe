@@ -36,11 +36,17 @@
     justify-content: space-between;
     align-items: center;
     .center {
-      img {
+      img.clue {
         width: 150px;
         height: 200px;
         border-radius: 0.357rem;
         transform: rotate(-90deg) translatex(-40px);
+      }
+      .selected-card{
+        display: flex;
+        gap: 1.4rem;
+        justify-content: center;
+        align-items: center;
       }
     }
     .player {

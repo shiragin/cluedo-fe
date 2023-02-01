@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { io, Socket } from 'socket.io-client';
-import { Room, IGameContext, User, Clue } from '../interfaces/interface';
+import { Room, IGameContext, User, Clue, Game } from '../interfaces/interface';
 import Clues from '../Data/Clues.json';
 
 export const GameContext = createContext<Partial<IGameContext>>({});
@@ -24,7 +24,7 @@ export default function GameContextProvider({
 
   const [readyPlayers, setReadyPlayers] = useState<string[]>([]);
   const [gameStarted, setGameStarted] = useState(false);
-  const [game, setGame] = useState({});
+  const [game, setGame] = useState<Game | null>(null);
 
   const ShuffleMurderCard = (): Clue[] => {
     const cards: Clue[] = [];
@@ -60,6 +60,8 @@ export default function GameContextProvider({
   function onGetRooms(): void {
     socket?.emit('choose_room');
   }
+
+  const [isAsked, setIsAsked] = useState<boolean>(false);
 
   // Get room list from BE socket
   socket?.off('get_rooms');
@@ -108,6 +110,8 @@ export default function GameContextProvider({
 
   function onAsk(selectedCards: Array<string>): void {
     socket?.emit('ask', { selectedCards, currentRoom });
+    console.log("yes", selectedCards);
+
   }
 
   socket?.off('error');
@@ -133,6 +137,8 @@ export default function GameContextProvider({
     <GameContext.Provider
       value={{
         onAddUser,
+        isAsked,
+        setIsAsked,
         rooms,
         user,
         setUser,

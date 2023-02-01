@@ -11,6 +11,8 @@ function GameRoomPage() {
   const { ShuffleMurderCard, game } = useGameContext();
   const [murderCards, setMurderCards] = useState<Clue[]>([]);
   const [clueCards, setClueCards] = useState<Clue[]>([]);
+  const [activePlayer, setActivePlayer] = useState('');
+  const [askedPlayer, setAskedPlayer] = useState('');
 
   useEffect(() => {
     let newMurderCards: Clue[];
@@ -26,7 +28,14 @@ function GameRoomPage() {
     }
   }, []);
 
-  console.log('game', game);
+  useEffect(() => {
+    if (game) {
+      const active = game.players.find((player) => player.role === 'active');
+      const asked = game.players.find((player) => player.role === 'asked');
+      setActivePlayer(active!.playerId);
+      setAskedPlayer(asked!.playerId);
+    }
+  }, []);
 
   return (
     <div className='game-container'>
@@ -39,7 +48,7 @@ function GameRoomPage() {
         <Player display={'right'} num={2} />
       </div>
       <div className='bottom'>
-        <ActivePlayer />
+        <ActivePlayer activePlayer={activePlayer} askedPlayer={askedPlayer} />
       </div>
     </div>
   );

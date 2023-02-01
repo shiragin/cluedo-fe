@@ -14,7 +14,6 @@ function ActivePlayer({
 }): JSX.Element {
   const { user } = useGameContext();
 
-  console.log(user);
   return (
     <div className='active-player'>
       <div className='active-player-cards'>

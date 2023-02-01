@@ -28,7 +28,6 @@ function CreateRoom({
 
   const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(newRoom);
     if (onCreateRoom) onCreateRoom(newRoom);
   };
 

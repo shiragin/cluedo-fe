@@ -77,6 +77,11 @@ export default function GameContextProvider({
     socket?.emit('joinroom', { roomId, user });
   }
 
+  function sendClues(newGame: Game): void {
+    console.log('NEW', newGame);
+    socket?.emit('send_clues', newGame);
+  }
+
   // entering the room queue
   socket?.off('enter_queue');
   socket?.on('enter_queue', (room: Room) => {
@@ -98,7 +103,6 @@ export default function GameContextProvider({
 
   socket?.off('game_started');
   socket?.on('game_started', (room): void => {
-    console.log('room', room);
     setGameStarted(true);
     setGame(room);
   });
@@ -162,6 +166,7 @@ export default function GameContextProvider({
         gameStarted,
         game,
         setGame,
+        sendClues,
       }}
     >
       {children}

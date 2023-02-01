@@ -48,8 +48,6 @@ function GameRoomPage() {
     }
     console.log('SHUFFLE', game);
   }
-  const [activePlayer, setActivePlayer] = useState('');
-  const [askedPlayer, setAskedPlayer] = useState('');
 
   useEffect(() => {
     let newMurderCards: Clue[];

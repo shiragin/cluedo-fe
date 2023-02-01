@@ -18,6 +18,7 @@ export interface IGameContext {
   onAsk: (selectedCards: Array<string>) => void;
   setUser: (user: User | null) => void;
   currentRoom: Room | null;
+  onLeave: () => void;
 }
 
 export interface User {

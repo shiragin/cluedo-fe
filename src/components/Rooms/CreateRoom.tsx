@@ -17,7 +17,7 @@ function CreateRoom({
   const [newRoom, setNewRoom] = useState({
     name: '',
     roomId: uuidv4(),
-    players: [{ playerId: user!.socketId, playerNickname: user!.nickname }],
+    players: [{ playerId: user!.id, playerNickname: user!.nickname }],
     maxPlayers: 4,
   });
 

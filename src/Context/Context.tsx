@@ -22,11 +22,6 @@ export default function GameContextProvider({
   const [rooms, setRooms] = useState<Array<Room>>([]);
   const [currentRoom, setCurrentRoom] = useState<Room | null>(null);
 
-  // Add a new user
-  const onAddUser = (name: string): void => {
-    socket?.emit("add_user", {name});
-  };
-
   const ShuffleMurderCard = (): Clue[] => {
     const cards: Clue[] = [];
     const pickedTypes = new Set<string>();
@@ -42,6 +37,11 @@ export default function GameContextProvider({
       }
     });
     return cards;
+  };
+
+  // Add a new user
+  const onAddUser = (name: string): void => {
+    socket?.emit('add_user', { name });
   };
 
   // new user response from BE socket

@@ -4,7 +4,7 @@ import {useGameContext} from "../../Context/Context";
 import "../../Styling/Homepage.scss";
 
 function Queue({queue, setQueue}: {queue: Boolean; setQueue: Function}) {
-  const {currentRoom, user} = useGameContext();
+  const {currentRoom, user, onLeave} = useGameContext();
   const [ready, setReady] = useState(false);
   const [readyPlayers, setReadyPlayers] = useState<string[]>([]);
 
@@ -37,6 +37,7 @@ function Queue({queue, setQueue}: {queue: Boolean; setQueue: Function}) {
 
   function leaveGAmeHandler() {
     // leave game logic here - remove player from ready list
+    onLeave && onLeave();
     setQueue(!queue);
   }
 

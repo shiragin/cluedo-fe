@@ -110,9 +110,13 @@ export default function GameContextProvider({
 
   function onAsk(selectedCards: Array<string>): void {
     socket?.emit('ask', { selectedCards, currentRoom });
-    console.log("yes", selectedCards);
-
   }
+
+  socket?.off('asked_cards');
+  socket?.on('asked_cards', (newSelectedCards): void => {
+    setSelectedCards(newSelectedCards);
+    setIsAsked(true);
+  });
 
   socket?.off('error');
   socket?.on('error', (err: string) => {

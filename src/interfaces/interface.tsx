@@ -31,6 +31,8 @@ export interface IGameContext {
   selectedCards: string[];
   isAsked: boolean;
   setIsAsked: React.Dispatch<React.SetStateAction<boolean>>;
+  isAccuse: boolean;
+  setIsAccuse: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedCards: React.Dispatch<React.SetStateAction<string[]>>;
   onReady: () => void;
   readyPlayers: string[];

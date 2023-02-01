@@ -62,6 +62,8 @@ export default function GameContextProvider({
   }
 
   const [isAsked, setIsAsked] = useState<boolean>(false);
+  const [isAccuse, setIsAccuse] = useState<boolean>(false);
+
 
   // Get room list from BE socket
   socket?.off('get_rooms');
@@ -143,6 +145,8 @@ export default function GameContextProvider({
         onAddUser,
         isAsked,
         setIsAsked,
+        isAccuse,
+        setIsAccuse,
         rooms,
         user,
         setUser,

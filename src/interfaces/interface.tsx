@@ -35,7 +35,7 @@ export interface IGameContext {
 export interface User {
   nickname: string;
   socketId: string;
-  _id: string;
+  id: string;
 }
 export interface Props {
   name: string;

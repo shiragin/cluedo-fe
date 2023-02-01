@@ -29,12 +29,16 @@ export interface IGameContext {
   onLeave: () => void;
   ShuffleMurderCard: () => Clue[];
   selectedCards: string[];
+  isAsked: boolean;
+  setIsAsked: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedCards: React.Dispatch<React.SetStateAction<string[]>>;
   onReady: () => void;
   readyPlayers: string[];
   setReadyPlayers: React.Dispatch<React.SetStateAction<string[]>>;
   onStart: () => void;
   gameStarted: boolean;
+  game: Game | null;
+  setGame: React.Dispatch<React.SetStateAction<Game | null>>;
 }
 
 export interface User {
@@ -47,4 +51,11 @@ export interface Props {
   type: string;
   color: string;
   image: string;
+}
+
+export interface Game {
+  roomId: string;
+  name: string;
+  players: [{ playerId: string; playerNickname: string; role: string }];
+  maxPlayers: number;
 }

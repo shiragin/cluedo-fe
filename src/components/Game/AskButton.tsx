@@ -1,14 +1,22 @@
 import Button from 'react-bootstrap/Button';
 // import { RxMagnifyingGlass } from 'react-icons/rx';
 import { SlMagnifier } from 'react-icons/sl';
+import { useGameContext } from '../../Context/Context';
 
 const AskButton = () => {
-  function onAsk() {
-    console.log('This player asks');
+  const { selectedCards, setSelectedCards, onAsk } = useGameContext();
+  const { isAsked, setIsAsked } = useGameContext();
+
+  function onAskHandler() {
+    if (setIsAsked) {
+      setIsAsked(true);
+      console.log(selectedCards);
+      if (onAsk && selectedCards) onAsk(selectedCards);
+    }
   }
 
   return (
-    <Button className='new-btn' onClick={onAsk}>
+    <Button className='new-btn' onClick={onAskHandler}>
       <SlMagnifier /> <span>Ask</span>
     </Button>
   );

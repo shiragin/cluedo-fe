@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState, useEffect} from "react";
 import {io, Socket} from "socket.io-client";
-import {Room, IGameContext, User, Clue} from "../interfaces/interface";
+import {Room, IGameContext, User, Clue, Game} from "../interfaces/interface";
 import Clues from "../Data/Clues.json";
 
 export const GameContext = createContext<Partial<IGameContext>>({});
@@ -24,6 +24,7 @@ export default function GameContextProvider({
 
   const [readyPlayers, setReadyPlayers] = useState<string[]>([]);
   const [gameStarted, setGameStarted] = useState(false);
+  const [game, setGame] = useState<Game | null>(null);
 
   const ShuffleMurderCard = (): Clue[] => {
     const cards: Clue[] = [];
@@ -44,7 +45,7 @@ export default function GameContextProvider({
 
   // Add a new user
   const onAddUser = (name: string): void => {
-    socket?.emit('add_user', { name });
+    socket?.emit("add_user", {name});
   };
 
   // new user response from BE socket
@@ -60,6 +61,8 @@ export default function GameContextProvider({
     socket?.emit("choose_room");
   }
 
+  const [isAsked, setIsAsked] = useState<boolean>(false);
+
   // Get room list from BE socket
   socket?.off("get_rooms");
   socket?.on("get_rooms", (roomsList: Array<Room>) => {
@@ -68,7 +71,7 @@ export default function GameContextProvider({
   });
 
   function onCreateRoom(newRoom: Room) {
-    console.log(newRoom)
+    console.log(newRoom);
     socket?.emit("create_room", newRoom);
   }
 
@@ -84,22 +87,23 @@ export default function GameContextProvider({
   });
 
   function onReady(): void {
-    socket?.emit('ready', { user, currentRoom });
+    socket?.emit("ready", {user, currentRoom});
     setReadyPlayers([...readyPlayers, user!.socketId]);
   }
-  socket?.off('player_ready');
-  socket?.on('player_ready', (playerId: string) => {
+  socket?.off("player_ready");
+  socket?.on("player_ready", (playerId: string) => {
     setReadyPlayers([...readyPlayers, playerId]);
   });
 
   function onStart(): void {
-    socket?.emit('start_game', currentRoom?.roomId);
+    socket?.emit("start_game", currentRoom?.roomId);
   }
 
-  socket?.off('game_started');
-  socket?.on('game_started', (): void => {
-    console.log('wowowow');
+  socket?.off("game_started");
+  socket?.on("game_started", (room): void => {
+    console.log("room", room);
     setGameStarted(true);
+    setGame(room);
   });
 
   // useEffect(() => {
@@ -110,6 +114,18 @@ export default function GameContextProvider({
   function onAsk(selectedCards: Array<string>): void {
     socket?.emit("ask", {selectedCards, currentRoom});
   }
+
+  socket?.off("asked_cards");
+  socket?.on("asked_cards", (newSelectedCards): void => {
+    setSelectedCards(newSelectedCards);
+    setIsAsked(true);
+  });
+
+  socket?.off("asked_cards");
+  socket?.on("asked_cards", (newSelectedCards): void => {
+    setSelectedCards(newSelectedCards);
+    setIsAsked(true);
+  });
 
   socket?.off("error");
   socket?.on("error", (err: string) => {
@@ -123,8 +139,6 @@ export default function GameContextProvider({
 
   socket?.off("player_quit");
   socket?.on("player_quit", (data: {room: Room; message: string}): void => {
-    console.log(data.message);
-    console.log(data.room);
     setCurrentRoom(data.room);
   });
 
@@ -136,6 +150,8 @@ export default function GameContextProvider({
     <GameContext.Provider
       value={{
         onAddUser,
+        isAsked,
+        setIsAsked,
         rooms,
         user,
         setUser,
@@ -153,6 +169,8 @@ export default function GameContextProvider({
         setReadyPlayers,
         onStart,
         gameStarted,
+        game,
+        setGame,
       }}
     >
       {children}

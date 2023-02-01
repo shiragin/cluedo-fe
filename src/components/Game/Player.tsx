@@ -10,8 +10,6 @@ function Player({
   display: string;
   num: number;
 }): JSX.Element {
-  console.log(checkList);
-
   interface IPlayer {
     id: string;
     cards: [];

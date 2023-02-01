@@ -8,9 +8,11 @@ import ActivePlayer from '../components/Game/ActivePlayer';
 import '../Styling/GameRoom.scss';
 
 function GameRoomPage() {
-  const { ShuffleMurderCard } = useGameContext();
+  const { ShuffleMurderCard, game } = useGameContext();
   const [murderCards, setMurderCards] = useState<Clue[]>([]);
   const [clueCards, setClueCards] = useState<Clue[]>([]);
+  const [activePlayer, setActivePlayer] = useState('');
+  const [askedPlayer, setAskedPlayer] = useState('');
 
   useEffect(() => {
     let newMurderCards: Clue[];
@@ -23,8 +25,17 @@ function GameRoomPage() {
       );
 
       setClueCards(newClueCards);
-      console.log('Murder', newMurderCards);
-      console.log('Clues', newClueCards);
+    }
+  }, []);
+
+  console.log(game);
+
+  useEffect(() => {
+    if (game) {
+      const active = game.players.find((player) => player.role === 'active');
+      const asked = game.players.find((player) => player.role === 'asked');
+      setActivePlayer(active!.playerId);
+      setAskedPlayer(asked!.playerId);
     }
   }, []);
 
@@ -39,7 +50,7 @@ function GameRoomPage() {
         <Player display={'right'} num={2} />
       </div>
       <div className='bottom'>
-        <ActivePlayer />
+        <ActivePlayer activePlayer={activePlayer} askedPlayer={askedPlayer} />
       </div>
     </div>
   );

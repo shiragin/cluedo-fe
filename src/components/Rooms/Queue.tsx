@@ -15,9 +15,6 @@ function Queue({ queue, setQueue }: { queue: Boolean; setQueue: Function }) {
     playerId: string;
     playerNickname: string;
   }) {
-    console.log('wow');
-    console.log('player', player.playerId);
-    console.log('user', user!.id);
     if (player.playerId !== user?.id) return;
     else {
       setReady(!ready);

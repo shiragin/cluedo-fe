@@ -1,14 +1,25 @@
+import { useEffect } from 'react';
+import { useGameContext } from '../../Context/Context';
 import Clues from '../../Data/Clues.json';
 import ClueCard from '../Cards/ClueCard';
 import AccuseButton from './AccuseButton';
 import AskButton from './AskButton';
 
-function ActivePlayer(): JSX.Element {
+function ActivePlayer({
+  activePlayer,
+  askedPlayer,
+}: {
+  activePlayer: string;
+  askedPlayer: string;
+}): JSX.Element {
+  const { user } = useGameContext();
+
+  console.log(user);
   return (
     <div className='active-player'>
       <div className='active-player-cards'>
         <div className='buttons'>
-          <AskButton />
+          {user?.id === activePlayer && <AskButton />}
           <AccuseButton />
         </div>
         <div className='card-row'>

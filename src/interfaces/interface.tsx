@@ -53,6 +53,7 @@ export interface Props {
   type: string;
   color: string;
   image: string;
+  isSelected?: boolean;
 }
 
 export interface Game {

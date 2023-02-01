@@ -37,7 +37,8 @@ const Center: React.FC<Props> = (props: Props) => {
              <ClueCard key = {index} name={object.name}
              type={object.type}
              color={object.color}
-             image={object.image}/>
+             image={object.image}
+             isSelected = {true}/>
           ))}
         </div>
       ) : (

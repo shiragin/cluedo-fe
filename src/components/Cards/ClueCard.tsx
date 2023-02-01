@@ -4,7 +4,7 @@ import { useGameContext } from '../../Context/Context';
 import '../../Styling/SuspectCard.scss';
 import '../../Data/Clues.json';
 
-function ClueCard({ name, type, image }: Props): JSX.Element {
+function ClueCard({ name, type, image, isSelected = false}: Props): JSX.Element {
   const [eliminated, setEliminated] = useState<boolean>(false);
   const { selectedCards, setSelectedCards } = useGameContext();
 
@@ -32,8 +32,8 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
 
   return (
     <div
-      onClick={handleClick}
-      onContextMenu={(e) => handleRightClick(e)}
+      onClick={!isSelected ? handleClick : undefined}
+      onContextMenu={!isSelected ? (e) => handleRightClick(e) : undefined}
       className={
         selectedCards?.includes(name) && !eliminated
           ? `clue-card ${type} selected`

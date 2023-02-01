@@ -30,6 +30,11 @@ export interface IGameContext {
   ShuffleMurderCard: () => Clue[];
   selectedCards: string[];
   setSelectedCards: React.Dispatch<React.SetStateAction<string[]>>;
+  onReady: () => void;
+  readyPlayers: string[];
+  setReadyPlayers: React.Dispatch<React.SetStateAction<string[]>>;
+  onStart: () => void;
+  gameStarted: boolean;
 }
 
 export interface User {

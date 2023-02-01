@@ -8,6 +8,8 @@ const AskButton = () => {
   const { isAsked, setIsAsked } = useGameContext();
 
   function onAskHandler() {
+    console.log(selectedCards, isAsked);
+    if (isAsked) return;
     if (setIsAsked) {
       setIsAsked(true);
       if (onAsk && selectedCards) onAsk(selectedCards);

@@ -19,6 +19,7 @@ export interface IGameContext {
   setUser: (user: User | null) => void;
   currentRoom: Room | null;
   onLeave: () => void;
+  ShuffleMurderCard: () => void;
 }
 
 export interface User {

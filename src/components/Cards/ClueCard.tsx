@@ -1,18 +1,12 @@
-import React from 'react';
-import '../../Styling/SuspectCard.scss';
-import "../../Data/Clues.json";
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-
-interface Props {
-  name: string;
-  type: string;
-  color: string;
-  image: string;
-}
+import { Props } from '../../interfaces/interface';
+import '../../Styling/SuspectCard.scss';
+import '../../Data/Clues.json';
+import Weapon from '../../Data/javascript_logo.png';
 
 function ClueCard({ name, type, image }: Props): JSX.Element {
   const [selectedCards, setSelectedCards] = useState<string[]>([]);
+  const [eliminated, setEliminated] = useState<boolean>(false);
 
   const handleClick = () => {
     if (selectedCards.includes(name)) {
@@ -22,18 +16,35 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
     }
   };
 
+  function handleRightClick(e: React.MouseEvent) {
+    e.preventDefault();
+    setEliminated(!eliminated);
+  }
+
   const handleSendName = () => {
     localStorage.setItem('selectedCards', JSON.stringify(selectedCards));
   };
 
   return (
-    <div className={`clue-card ${type}`} onClick={handleClick} style={{ width: "200px", height: "250px", border: `6px solid ${selectedCards.includes(name) ? 'green' : 'black'}` }}>
-      <div className='clue-card-type'>{type.toUpperCase()}</div>
-      <div className='clue-card-name'>
+    <div
+      onClick={handleClick}
+      onContextMenu={(e) => handleRightClick(e)}
+      className={
+        selectedCards.includes(name) && !eliminated
+          ? `clue-card ${type} selected`
+          : selectedCards.includes(name) && eliminated
+          ? `clue-card ${type} selected greyed`
+          : eliminated
+          ? `clue-card ${type} greyed`
+          : `clue-card ${type}`
+      }
+    >
+      {/* <div className='clue-card-type'>{type.toUpperCase()}</div> */}
+      <div className={`clue-card-name ${type}`}>
+        {/* <div className='deck'>{color}</div> */}
         <div>{name}</div>
       </div>
-      <img className='clue-card-image' src={image} alt={name} style={{ width: "90px", height: "200px" }} />
-      <Button variant="info" onClick={handleSendName}>Ask</Button>
+      <img className='clue-card-image' src={image} alt={name} />
     </div>
   );
 }

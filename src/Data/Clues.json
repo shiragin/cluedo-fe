@@ -2,42 +2,42 @@
   {
     "id": 1,
     "name": "Mor Mika Krengel",
-    "type": "Suspect",
+    "type": "suspect",
     "color": "Red",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158190/T041TFU6DE1-U041PS5P58W-1a69a8607260-512_flgomb.jpg"
   },
   {
     "id": 2,
     "name": "Zohar Suslovich",
-    "type": "Suspect",
+    "type": "suspect",
     "color": "Green",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158169/T041TFU6DE1-U041YP80GE6-285af31747d0-512_ygj0io.jpg"
   },
   {
     "id": 3,
     "name": "Nimrod Milshtein",
-    "type": "Suspect",
+    "type": "suspect",
     "color": "Yellow",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675165248/img-20230131-wa0007_q2gkst.jpg"
   },
   {
     "id": 4,
     "name": "Lior Barak",
-    "type": "Suspect",
+    "type": "suspect",
     "color": "Blue",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158181/T041TFU6DE1-U041S5489DL-d95c78f996e9-512_paentr.jpg"
   },
   {
     "id": 5,
     "name": "Yehuda Goldner",
-    "type": "Suspect",
+    "type": "suspect",
     "color": "Purple",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675158161/T041TFU6DE1-U0494NXDF99-fddc9262a01a-512_fphsbt.png"
   },
   {
     "id": 6,
     "name": "Yonatan Salmon",
-    "type": "Suspect",
+    "type": "suspect",
     "color": "White",
     "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675146408/T041TFU6DE1-U041J6GTJS3-4690e5465a74-512_f1aqiq.jpg"
   },
@@ -46,26 +46,38 @@
     "name": "Candle Stick",
     "type": "Weapon",
     "color": "Gray",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185119/js_lcg0q8.png"
   },
   {
     "id": 8,
     "name": "Rope",
     "type": "Weapon",
     "color": "Gray",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185023/css_wvrebb.png"
   },
   {
     "id": 9,
     "name": "Knife",
     "type": "Weapon",
     "color": "Gray",
-    "image": ""
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185016/html_gufguf.png"
+  },
+  {
+    "name": "Classroom",
+    "type": "location",
+    "color": "Dark Green",
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185514/WhatsApp_Image_2023-01-31_at_18.58.46_wii6bo.jpg"
+  },
+  {
+    "name": "Mentors Room",
+    "type": "location",
+    "color": "Dark Green",
+    "image": "https://res.cloudinary.com/dmy0f63gx/image/upload/v1675185502/WhatsApp_Image_2023-01-31_at_18.58.45_vej1hd.jpg"
   },
   {
     "id": 10,
     "name": "Kitchen",
-    "type": "Location",
+    "type": "location",
     "color": "Dark Green",
     "image": ""
   },

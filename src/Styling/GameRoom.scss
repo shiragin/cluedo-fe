@@ -1,0 +1,129 @@
+@import 'variables';
+
+.game-container {
+  height: 100vh;
+  background: url('../Data/Gameboard.jpg') no-repeat center right / cover;
+  background-color: $light-color;
+  padding: 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-end;
+
+  .top {
+    z-index: 9;
+    flex-grow: 1;
+    margin-bottom: -240px;
+    div {
+      display: flex;
+      justify-content: center;
+    }
+
+    .player {
+      position: relative;
+      &-num {
+        position: absolute;
+      }
+      img.up {
+        transform: translateY(-120px) rotate(180deg);
+      }
+    }
+  }
+
+  .middle {
+    z-index: 9;
+    flex-grow: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .center {
+      img {
+        width: 150px;
+        height: 200px;
+        border-radius: 0.357rem;
+        transform: rotate(-90deg);
+      }
+    }
+    .player {
+      position: relative;
+      img.left {
+        transform: translate(-200px, -40px) rotate(90deg);
+      }
+      img.left + .player-num {
+        position: absolute;
+        left: 0;
+        top: 25%;
+      }
+      img.right {
+        transform: translate(200px, -40px) rotate(-90deg);
+      }
+      img.right + .player-num {
+        position: absolute;
+        right: 0;
+        top: 25%;
+      }
+    }
+  }
+
+  .bottom {
+    z-index: 9;
+    .active-player {
+      display: flex;
+      flex-grow: 1;
+      &-title {
+        display: flex;
+        justify-content: center;
+        button {
+          align-self: flex-end;
+        }
+      }
+      &-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+        width: 100%;
+        .buttons {
+          display: flex;
+          justify-content: center;
+          gap: 1.4rem;
+          button {
+            // text-align: center;
+            background-color: $dark-color;
+            // border: 0.2rem solid $light-color;
+            color: $light-color;
+            min-width: 160px;
+            font-size: 1.2rem;
+            padding: 0.5rem 2rem;
+            &:active,
+            &:focus,
+            &:focus-visible {
+              background-color: $dark-color !important;
+            }
+            svg {
+              font-size: 1.4rem;
+              margin: 0 0.4rem 0.2rem 0;
+            }
+          }
+        }
+        .card-row {
+          width: 100%;
+          display: flex;
+          gap: 1.4rem;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+.player-num {
+  font-family: 'Kumbh Sans';
+  font-size: 2rem;
+  background-color: #f86049;
+  height: 3rem;
+  width: 3rem;
+  color: $light-color;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

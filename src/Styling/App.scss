@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow: scroll;
+  overflow: hidden;
+}
+
 body {
   font-family: $font-stack;
   line-height: 1.5;

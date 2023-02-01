@@ -28,6 +28,8 @@ function GameRoomPage() {
     }
   }, []);
 
+  console.log(game);
+
   useEffect(() => {
     if (game) {
       const active = game.players.find((player) => player.role === 'active');

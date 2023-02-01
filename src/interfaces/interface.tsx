@@ -1,7 +1,10 @@
 export interface Room {
   name: string;
   roomId: string;
-  players: Array<string>;
+  players: {
+    playerId: string;
+    playerNickname: string;
+  }[];
   maxPlayers: number;
 }
 
@@ -10,9 +13,12 @@ export interface IGameContext {
   rooms: Array<Room>;
   user: User | null;
   onCreateRoom: (newRoom: Room) => void;
+  onGetRooms: () => void;
   onJoin: (roomId: string) => void;
   onAsk: (selectedCards: Array<string>) => void;
-  onGoBack: () => void;
+  setUser: (user: User | null) => void;
+  currentRoom: Room | null;
+  onGoBack: () => void
 }
 
 export interface User {

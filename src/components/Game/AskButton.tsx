@@ -1,4 +1,6 @@
 import Button from 'react-bootstrap/Button';
+// import { RxMagnifyingGlass } from 'react-icons/rx';
+import { SlMagnifier } from 'react-icons/sl';
 
 const AskButton = () => {
   function onAsk() {
@@ -7,8 +9,7 @@ const AskButton = () => {
 
   return (
     <Button className='new-btn' onClick={onAsk}>
-      {' '}
-      Ask{' '}
+      <SlMagnifier /> <span>Ask</span>
     </Button>
   );
 };

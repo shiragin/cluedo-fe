@@ -14,9 +14,16 @@ function RoomList({
   const { onAddUser, rooms, user, onJoin } = useGameContext();
   const [selectedRoom, setSelectedRoom] = useState(rooms![0]?.roomId || '');
 
+  function selectRoomHandler(roomId: string) {
+    if (roomId === selectedRoom) setSelectedRoom('');
+    else setSelectedRoom(roomId);
+  }
+
+  console.log(rooms);
+
   return (
     <div className='waiting-room-container'>
-      <Table bordered>
+      <Table>
         <thead>
           <tr>
             <th>Room Name</th>
@@ -28,13 +35,13 @@ function RoomList({
             {rooms?.map((room) => {
               return (
                 <tr
-                  onClick={(event) => setSelectedRoom(room.roomId)}
+                  onClick={() => selectRoomHandler(room.roomId)}
                   key={room.roomId}
                   className={selectedRoom === room?.roomId ? 'selected' : ''}
                 >
                   <td>{room.name}</td>
                   <td>
-                    {room.players.length}/{room.maxPlayers}
+                    {room?.players?.length}/{room?.maxPlayers}
                   </td>
                 </tr>
               );

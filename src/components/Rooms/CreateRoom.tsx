@@ -12,20 +12,20 @@ function CreateRoom({
   create: Boolean;
   setCreate: Function;
 }) {
-  const { rooms, user } = useGameContext();
+  const { rooms, user, onCreateRoom } = useGameContext();
 
   const [newRoom, setNewRoom] = useState({
     name: '',
     roomId: uuidv4(),
-    players: [user?.socketId],
+    players: [{ playerId: user!.socketId, playerNickname: user!.nickname }],
     maxPlayers: 4,
   });
 
-  useEffect(() => {
-    if (user) {
-      setNewRoom({ ...newRoom, players: [user?.socketId] });
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     setNewRoom({ ...newRoom, players: [user?.socketId, user?.nickname] });
+  //   }
+  // }, [user]);
 
   const handleChange = (e: React.ChangeEvent): void => {
     const target = e.target as HTMLInputElement;
@@ -35,6 +35,7 @@ function CreateRoom({
   const handleCreate = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log(newRoom);
+    if (onCreateRoom) onCreateRoom(newRoom);
   };
 
   return (

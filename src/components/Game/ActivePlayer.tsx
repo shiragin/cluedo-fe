@@ -1,19 +1,15 @@
 import Clues from '../../Data/Clues.json';
 import ClueCard from '../Cards/ClueCard';
-import AccuseButton from './AccuseButton copy';
+import AccuseButton from './AccuseButton';
 import AskButton from './AskButton';
 
 function ActivePlayer(): JSX.Element {
   return (
     <div className='active-player'>
-      {/* <div className='active-player-title'> */}
-      {/* <h1>You</h1> */}
-      {/* </div> */}
-
       <div className='active-player-cards'>
         <div className='buttons'>
-          <AccuseButton />
           <AskButton />
+          <AccuseButton />
         </div>
         <div className='card-row'>
           {Clues.slice(0, 6).map((clue, index) => (

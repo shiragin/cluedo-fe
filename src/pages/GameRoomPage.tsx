@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 import { useGameContext } from '../Context/Context';
 import Clues from '../Data/Clues.json';
 import { Clue } from '../interfaces/interface';
@@ -14,6 +15,40 @@ function GameRoomPage() {
   const [activePlayer, setActivePlayer] = useState('');
   const [askedPlayer, setAskedPlayer] = useState('');
 
+  function giveClueCards(clues: Clue[]) {
+    console.log('HOW MANY', game?.players);
+
+    const shuffledCards = _.shuffle(clues);
+    if (game!.players.length !== undefined) {
+      if (game?.players?.length === 2) {
+        game.players[0].clues = [
+          clues[0],
+          clues[1],
+          clues[2],
+          clues[3],
+          clues[8],
+        ];
+        game.players[1].clues = [
+          clues[4],
+          clues[5],
+          clues[6],
+          clues[7],
+          clues[8],
+        ];
+      } else if (game?.players?.length === 3) {
+        game.players[0].clues = [clues[0], clues[1], clues[2]];
+        game.players[1].clues = [clues[3], clues[4], clues[5]];
+        game.players[2].clues = [clues[6], clues[7], clues[8]];
+      } else {
+        game!.players[0].clues = [clues[0], clues[1], clues[8]];
+        game!.players[1].clues = [clues[2], clues[3], clues[8]];
+        game!.players[2].clues = [clues[4], clues[5], clues[8]];
+        game!.players[3].clues = [clues[6], clues[7], clues[8]];
+      }
+    }
+    console.log('SHUFFLE', game);
+  }
+
   useEffect(() => {
     let newMurderCards: Clue[];
     if (ShuffleMurderCard) {
@@ -25,10 +60,9 @@ function GameRoomPage() {
       );
 
       setClueCards(newClueCards);
+      giveClueCards(newClueCards);
     }
   }, []);
-
-  console.log(game);
 
   useEffect(() => {
     if (game) {
@@ -37,7 +71,7 @@ function GameRoomPage() {
       setActivePlayer(active!.playerId);
       setAskedPlayer(asked!.playerId);
     }
-  }, []);
+  }, [game]);
 
   return (
     <div className='game-container'>

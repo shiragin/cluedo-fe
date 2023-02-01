@@ -56,6 +56,12 @@ export interface Props {
 export interface Game {
   roomId: string;
   name: string;
-  players: [{ playerId: string; playerNickname: string; role: string }];
+  players: {
+    playerId: string;
+    playerNickname: string;
+    role: string;
+    clues: Clue[];
+  }[];
+
   maxPlayers: number;
 }

@@ -1,20 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Props } from '../../interfaces/interface';
+import { useGameContext } from '../../Context/Context';
 import '../../Styling/SuspectCard.scss';
 import '../../Data/Clues.json';
-import Weapon from '../../Data/javascript_logo.png';
 
 function ClueCard({ name, type, image }: Props): JSX.Element {
-  const [selectedCards, setSelectedCards] = useState<string[]>([]);
   const [eliminated, setEliminated] = useState<boolean>(false);
+  const { selectedCards, setSelectedCards } = useGameContext();
 
   const handleClick = () => {
-    if (selectedCards.includes(name)) {
-      setSelectedCards(selectedCards.filter((card) => card !== name));
-    } else {
-      setSelectedCards([...selectedCards, name]);
-    }
+    if (selectedCards && setSelectedCards)
+      if (selectedCards.includes(name)) {
+        setSelectedCards(selectedCards.filter((card) => card !== name));
+      } else {
+        if (selectedCards.length < 2)
+          setSelectedCards((prev) => [...prev, name]);
+      }
   };
+
+  useEffect(() => {
+    console.log(selectedCards);
+  }, [selectedCards]);
 
   function handleRightClick(e: React.MouseEvent) {
     e.preventDefault();
@@ -30,9 +36,9 @@ function ClueCard({ name, type, image }: Props): JSX.Element {
       onClick={handleClick}
       onContextMenu={(e) => handleRightClick(e)}
       className={
-        selectedCards.includes(name) && !eliminated
+        selectedCards?.includes(name) && !eliminated
           ? `clue-card ${type} selected`
-          : selectedCards.includes(name) && eliminated
+          : selectedCards?.includes(name) && eliminated
           ? `clue-card ${type} selected greyed`
           : eliminated
           ? `clue-card ${type} greyed`

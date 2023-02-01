@@ -8,6 +8,14 @@ export interface Room {
   maxPlayers: number;
 }
 
+export interface Clue {
+  id: number;
+  name: string;
+  type: string;
+  color: string;
+  image: string;
+}
+
 export interface IGameContext {
   onAddUser: (name: string) => void;
   rooms: Array<Room>;
@@ -19,12 +27,15 @@ export interface IGameContext {
   setUser: (user: User | null) => void;
   currentRoom: Room | null;
   onLeave: () => void;
+  ShuffleMurderCard: () => Clue[];
+  selectedCards: string[];
+  setSelectedCards: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export interface User {
   nickname: string;
   socketId: string;
-  _id: string;
+  id: string;
 }
 export interface Props {
   name: string;

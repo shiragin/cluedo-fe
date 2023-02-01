@@ -1,9 +1,12 @@
-import Clue from '../../Data/Clue.jpg';
+import { Clue } from '../../interfaces/interface';
+import Cluedo from '../../Data/Clue.jpg';
 
-function Center(): JSX.Element {
+function Center(props: any): JSX.Element {
+  const { murderCards } = props;
+
   return (
     <div className='center'>
-      <img src={Clue} alt='The murder case' />
+      <img src={Cluedo} alt='The murder case' />
     </div>
   );
 }

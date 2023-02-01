@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { io, Socket } from "socket.io-client";
 import { Room, IGameContext, User } from "../interfaces/interface";
+import Clues from "../Data/Clues.json";
 
 export const GameContext = createContext<Partial<IGameContext>>({});
 
@@ -23,6 +24,29 @@ export default function GameContextProvider({
   // Add a new user
   const onAddUser = (name: string): void => {
     socket?.emit("add_user", { name });
+  };
+
+  const ShuffleMurderCard = () => {
+    interface Clue {
+      id: number;
+      name: string;
+      type: string;
+      color: string;
+      image: string;
+    }
+    const cards: Clue[] = [];
+    const pickedTypes = new Set<string>();
+
+    Clues.forEach((clue: Clue) => {
+      if (!pickedTypes.has(clue.type)) {
+        const filteredClues: Clue[] = Clues.filter(
+          (clueInner: Clue) => clueInner.type === clue.type
+        );
+        const randomIndex = Math.floor(Math.random() * filteredClues.length);
+        cards.push(filteredClues[randomIndex]);
+        pickedTypes.add(clue.type);
+      }
+    });
   };
 
   // new user response from BE socket
@@ -98,6 +122,7 @@ export default function GameContextProvider({
         onAsk,
         currentRoom,
         onLeave,
+        ShuffleMurderCard,
       }}
     >
       {children}

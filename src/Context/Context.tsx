@@ -45,6 +45,7 @@ export default function GameContextProvider({
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")!));
+    setGame(JSON.parse(localStorage.getItem("game")!));
   }, []);
 
   // Add a new user
@@ -105,6 +106,7 @@ export default function GameContextProvider({
     console.log("room", room);
     setGameStarted(true);
     setGame(room);
+    localStorage.setItem("game", JSON.stringify(room));
   });
 
   // useEffect(() => {

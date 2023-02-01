@@ -35,6 +35,8 @@ export interface IGameContext {
   setReadyPlayers: React.Dispatch<React.SetStateAction<string[]>>;
   onStart: () => void;
   gameStarted: boolean;
+  game: {};
+  setGame: React.Dispatch<React.SetStateAction<{}>>;
 }
 
 export interface User {

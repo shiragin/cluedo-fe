@@ -24,6 +24,7 @@ export default function GameContextProvider({
 
   const [readyPlayers, setReadyPlayers] = useState<string[]>([]);
   const [gameStarted, setGameStarted] = useState(false);
+  const [game, setGame] = useState({});
 
   const ShuffleMurderCard = (): Clue[] => {
     const cards: Clue[] = [];
@@ -63,7 +64,6 @@ export default function GameContextProvider({
   // Get room list from BE socket
   socket?.off('get_rooms');
   socket?.on('get_rooms', (roomsList: Array<Room>) => {
-    console.log('hi', roomsList);
     setRooms(roomsList);
   });
 
@@ -72,14 +72,12 @@ export default function GameContextProvider({
   }
 
   function onJoin(roomId: string): void {
-    console.log(roomId, user);
     socket?.emit('joinroom', { roomId, user });
   }
 
   // entering the room queue
   socket?.off('enter_queue');
   socket?.on('enter_queue', (room: Room) => {
-    console.log(room);
     setCurrentRoom(room);
   });
 
@@ -97,9 +95,10 @@ export default function GameContextProvider({
   }
 
   socket?.off('game_started');
-  socket?.on('game_started', (): void => {
-    console.log('wowowow');
+  socket?.on('game_started', (room): void => {
+    console.log('room', room);
     setGameStarted(true);
+    setGame(room);
   });
 
   // useEffect(() => {
@@ -123,8 +122,6 @@ export default function GameContextProvider({
 
   socket?.off('player_quit');
   socket?.on('player_quit', (data: { room: Room; message: string }): void => {
-    console.log(data.message);
-    console.log(data.room);
     setCurrentRoom(data.room);
   });
 
@@ -153,6 +150,8 @@ export default function GameContextProvider({
         setReadyPlayers,
         onStart,
         gameStarted,
+        game,
+        setGame,
       }}
     >
       {children}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Col } from 'react-bootstrap';
 import { useGameContext } from '../../Context/Context';
+import { useEffect } from 'react';
 
 
 const ModalAccuse = () => {
@@ -9,9 +10,12 @@ const ModalAccuse = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { isAccuse, setIsAccuse } = useGameContext();
-  if(isAccuse){
-    handleShow();
-  }
+  
+  useEffect(() => {
+    if (isAccuse) {
+      setShow(true);
+    }
+  }, [isAccuse]);
 
   return (
     <>

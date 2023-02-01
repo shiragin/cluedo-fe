@@ -40,6 +40,7 @@ const Center: React.FC<Props> = (props: Props) => {
               cardType={object.cardType}
               color={object.color}
               image={object.image}
+              myClues={[]}
             />
           ))}
         </div>

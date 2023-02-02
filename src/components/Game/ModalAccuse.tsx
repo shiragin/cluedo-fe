@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Button, Modal, Form, Col } from "react-bootstrap";
-import { useGameContext } from "../../Context/Context";
-import { useEffect } from "react";
-import Clues from "../../Data/Clues.json";
+import React, { useState } from 'react';
+import { Button, Modal, Form, Col } from 'react-bootstrap';
+import { useGameContext } from '../../Context/Context';
+import { useEffect } from 'react';
+import Clues from '../../Data/Clues.json';
 
 interface Accusation {
   suspect: string;
@@ -15,9 +15,9 @@ const ModalAccuse: React.FC = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { isAccuse, setIsAccuse } = useGameContext();
-  const [selectedSuspect, setSelectedSuspect] = useState("");
-  const [selectedWeapon, setSelectedWeapon] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedSuspect, setSelectedSuspect] = useState('');
+  const [selectedWeapon, setSelectedWeapon] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('');
 
   useEffect(() => {
     if (isAccuse) {
@@ -45,27 +45,27 @@ const ModalAccuse: React.FC = () => {
     setSelectedLocation((e.target as HTMLInputElement).value);
   };
 
-  const optionsSuspect = Clues.filter((clue) => clue.type === "suspect").map(
+  const optionsSuspect = Clues.filter(
+    (clue) => clue.cardType === 'suspect'
+  ).map((clue) => (
+    <option key={clue.id} value={clue.name}>
+      {clue.name}
+    </option>
+  ));
+  const optionsWaepon = Clues.filter((clue) => clue.cardType === 'weapon').map(
     (clue) => (
       <option key={clue.id} value={clue.name}>
         {clue.name}
       </option>
     )
   );
-  const optionsWaepon = Clues.filter((clue) => clue.type === "weapon").map(
-    (clue) => (
-      <option key={clue.id} value={clue.name}>
-        {clue.name}
-      </option>
-    )
-  );
-  const optionsLocation = Clues.filter((clue) => clue.type === "location").map(
-    (clue) => (
-      <option key={clue.id} value={clue.name}>
-        {clue.name}
-      </option>
-    )
-  );
+  const optionsLocation = Clues.filter(
+    (clue) => clue.cardType === 'location'
+  ).map((clue) => (
+    <option key={clue.id} value={clue.name}>
+      {clue.name}
+    </option>
+  ));
   const newAccusation: Accusation = {
     suspect: selectedSuspect,
     weapon: selectedWeapon,
@@ -86,10 +86,10 @@ const ModalAccuse: React.FC = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group as={Col} controlId="formGridSuspect">
+            <Form.Group as={Col} controlId='formGridSuspect'>
               <Form.Label>Suspect</Form.Label>
               <Form.Control
-                as="select"
+                as='select'
                 value={selectedSuspect}
                 onChange={handleSuspectChange}
               >
@@ -97,10 +97,10 @@ const ModalAccuse: React.FC = () => {
                 {optionsSuspect}
               </Form.Control>
             </Form.Group>
-            <Form.Group as={Col} controlId="formGridWeapon">
+            <Form.Group as={Col} controlId='formGridWeapon'>
               <Form.Label>Weapon</Form.Label>
               <Form.Control
-                as="select"
+                as='select'
                 value={selectedWeapon}
                 onChange={handleWeaponChange}
               >
@@ -108,10 +108,10 @@ const ModalAccuse: React.FC = () => {
                 {optionsWaepon}
               </Form.Control>
             </Form.Group>
-            <Form.Group as={Col} controlId="formGridLocation">
+            <Form.Group as={Col} controlId='formGridLocation'>
               <Form.Label>Location</Form.Label>
               <Form.Control
-                as="select"
+                as='select'
                 value={selectedLocation}
                 onChange={handleLocationChange}
               >
@@ -122,10 +122,10 @@ const ModalAccuse: React.FC = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSaveChanges}>
+          <Button variant='primary' onClick={handleSaveChanges}>
             Save Changes
           </Button>
         </Modal.Footer>

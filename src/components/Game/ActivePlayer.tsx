@@ -16,23 +16,9 @@ function ActivePlayer(): JSX.Element {
         (player) => player.playerId === user.id
       );
       console.log('me', player);
-      // let mePlayer;
-      // for (const player of game.players) {
-      //   if (player.playerId === user.id) mePlayer = player;
-      // }
-      // console.log(player);
-      // const mePlayer = game.players.find(
-      //   (player) => player.playerId === user.id
-      // );
-      // console.log(mePlayer);
-      // player.playerId === user.id);
-      // console.log(player);
-      // const { clues } = player;
-      // console.log('player', player);
-      // console.log('clues', player?.clues);
       setMyClues(player[0]!.clues);
     }
-  });
+  }, [game]);
 
   return (
     <div className='active-player'>

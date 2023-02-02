@@ -14,6 +14,8 @@ function ModalAsk(props: any) {
     game,
     user,
     passTurn,
+    sendReply,
+    answerBack,
   } = useGameContext();
   const [show, setShow] = useState(false);
   const [asking, setAsking] = useState<{
@@ -44,7 +46,7 @@ function ModalAsk(props: any) {
     );
     if (active) setAsking(active);
     if (askedpl) setAsked(askedpl);
-  }, [activePlayer]);
+  }, [isAsked]);
 
   useEffect(() => {
     if (!asked) return;
@@ -60,11 +62,15 @@ function ModalAsk(props: any) {
     setAnswer(newClues);
   }, [asked]);
 
-  function answerHandler(answer: string) {
+  function answerHandler(choice: number) {
     if (setIsAsked) setIsAsked(false);
-    if (answer === 'no') {
+    if (choice === -1) {
       console.log('no');
       if (passTurn) passTurn();
+    } else if (choice === 0) {
+      if (sendReply) sendReply(answer![0]);
+    } else if (choice === 1) {
+      if (sendReply) sendReply(answer![1]);
     }
   }
 
@@ -92,34 +98,41 @@ function ModalAsk(props: any) {
           <div className='ask-buttons'>
             <div>Answer the question</div>
             {answer?.length === 0 && (
-              <Button className='new-btn' onClick={() => answerHandler('no')}>
+              <Button className='new-btn' onClick={() => answerHandler(-1)}>
                 Sorry, no
               </Button>
             )}
             {answer?.length === 1 && (
-              <Button
-                className='new-btn'
-                onClick={() => answerHandler('clue1')}
-              >
+              <Button className='new-btn' onClick={() => answerHandler(0)}>
                 {answer[0]?.name}
               </Button>
             )}
             {answer?.length === 2 && (
               <div>
-                <Button
-                  className='new-btn'
-                  onClick={() => answerHandler('clue1')}
-                >
+                <Button className='new-btn' onClick={() => answerHandler(0)}>
                   {answer[0].name}
                 </Button>
-                <Button
-                  className='new-btn'
-                  onClick={() => answerHandler('clue2')}
-                >
+                <Button className='new-btn' onClick={() => answerHandler(1)}>
                   {answer[1].name}
                 </Button>
               </div>
             )}
+          </div>
+        )}
+        {answerBack?.stat && (
+          <div className='answer-card'>
+            <div>The answer!</div>
+            <ClueCard
+              key={1}
+              name={answerBack?.answer.name}
+              cardType={answerBack?.answer.cardType}
+              color={answerBack?.answer.color}
+              image={answerBack?.answer.image}
+              myClues={[]}
+            />
+            <Button className='new-btn' onClick={() => answerHandler(-1)}>
+              Okay!
+            </Button>
           </div>
         )}
       </Modal>

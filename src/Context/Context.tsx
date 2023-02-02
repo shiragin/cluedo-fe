@@ -27,7 +27,13 @@ export default function GameContextProvider({
   const [game, setGame] = useState<Game | null>(null);
   const [activePlayer, setActivePlayer] = useState('');
   const [askedPlayer, setAskedPlayer] = useState('');
-  // const [playerClues, setPlayerClues] = useState<Clue[] | null>(null);
+  const [answerBack, setAnswerBack] = useState<{
+    stat: boolean;
+    answer: Clue | {};
+  }>({
+    stat: false,
+    answer: {},
+  });
 
   const ShuffleMurderCard = (): Clue[] => {
     const cards: Clue[] = [];
@@ -137,13 +143,23 @@ export default function GameContextProvider({
   }
 
   function passTurn(): void {
+    setAnswerBack({ stat: false, answer: {} });
     socket?.emit('pass_turn', game);
+  }
+
+  function sendReply(answer: Clue): void {
+    socket?.emit('send_reply', { game, answer });
   }
 
   socket?.off('asked_cards');
   socket?.on('asked_cards', (newSelectedCards): void => {
     setSelectedCards(newSelectedCards);
     setIsAsked(true);
+  });
+
+  socket?.off('show_card');
+  socket?.on('show_card', (answer: Clue): void => {
+    setAnswerBack({ stat: true, answer: answer });
   });
 
   socket?.off('error');
@@ -207,6 +223,8 @@ export default function GameContextProvider({
         activePlayer,
         askedPlayer,
         passTurn,
+        sendReply,
+        answerBack,
       }}
     >
       {children}

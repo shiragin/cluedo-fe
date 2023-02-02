@@ -13,6 +13,8 @@ function App() {
     setSocket(mainSocket);
   }, []);
 
+  // localStorage.clear();
+
   return (
     <GameContextProvider socket={socket}>
       <BrowserRouter>

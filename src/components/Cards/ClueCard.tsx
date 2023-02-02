@@ -28,19 +28,13 @@ function ClueCard({ name, cardType, image, myClues }: Props): JSX.Element {
     setEliminated(!eliminated);
   }
 
-  // const handleSendName = () => {
-  //   localStorage.setItem('selectedCards', JSON.stringify(selectedCards));
-  // };
-
-  // function showClues(clues: Clue[]) {
-  // }
-
   useEffect(() => {
-    // console.log(playerClues);
-    // if (playerClues?.length) showClues(playerClues);
-    console.log('HHHHHAAA', myClues);
     const clueNames = myClues?.map((clue: any) => clue.name);
-    if (clueNames.includes(name)) setClue(true);
+    if (clueNames.includes(name)) {
+      setClue(true);
+    } else {
+      setClue(false);
+    }
   }, [myClues]);
 
   return (

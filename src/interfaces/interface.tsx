@@ -46,6 +46,8 @@ export interface IGameContext {
   activePlayer: string;
   askedPlayer: string;
   playerClues: any;
+  sendReply: (answer: Clue) => void;
+  answerBack: any;
   // setPlayerClues:
 }
 

@@ -39,6 +39,7 @@ export default function GameContextProvider({
         cards.push(filteredClues[randomIndex]);
         pickedTypes.add(clue.type);
       }
+      console.log('CARDS', cards);
     });
     return cards;
   };

@@ -50,6 +50,7 @@ export interface IGameContext {
   sendReply: (answer: Clue) => void;
   answerBack: any;
   winResult: { stat: boolean; win: boolean };
+  solution: any;
 }
 
 export interface User {
@@ -68,6 +69,7 @@ export interface Props {
 export interface Game {
   roomId: string;
   name: string;
+  murder: Clue[];
   players: {
     playerId: string;
     playerNickname: string;

@@ -15,7 +15,6 @@ function ActivePlayer({ murderCards }: { murderCards: Clue[] }): JSX.Element {
       const player = game.players.filter(
         (player) => player.playerId === user.id
       );
-      console.log('me', player);
       setMyClues(player[0]!.clues);
     }
   }, [game]);

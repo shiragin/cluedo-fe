@@ -58,14 +58,12 @@ function ModalAsk(props: any) {
         }
       }
     }
-    console.log('NEW CLUES', newClues);
     setAnswer(newClues);
   }, [asked]);
 
   function answerHandler(choice: number) {
     if (setIsAsked) setIsAsked(false);
     if (choice === -1) {
-      console.log('no');
       if (passTurn) passTurn();
     } else if (choice === 0) {
       if (sendReply) sendReply(answer![0]);

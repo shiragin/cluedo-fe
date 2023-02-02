@@ -27,6 +27,7 @@ export default function GameContextProvider({
   const [game, setGame] = useState<Game | null>(null);
   const [activePlayer, setActivePlayer] = useState('');
   const [askedPlayer, setAskedPlayer] = useState('');
+  const [solution, setSolution] = useState<Clue[] | null>(null);
   const [winResult, setWinResult] = useState({ stat: false, win: false });
   const [answerBack, setAnswerBack] = useState<{
     stat: boolean;
@@ -49,7 +50,6 @@ export default function GameContextProvider({
         cards.push(filteredClues[randomIndex]);
         pickedTypes.add(clue.cardType);
       }
-      console.log('CARDS', cards);
     });
     return cards;
   };
@@ -104,12 +104,14 @@ export default function GameContextProvider({
   }
 
   function sendClues(newGame: Game): void {
+    console.log(newGame);
     socket?.emit('send_clues', newGame);
   }
 
   socket?.off('clues_sent');
   socket?.on('clues_sent', (room: Game) => {
     setCurrentRoom(room);
+    setSolution(room.murder);
     setGame(room);
     localStorage.setItem('game', JSON.stringify(room));
   });
@@ -165,7 +167,6 @@ export default function GameContextProvider({
 
   socket?.off('accuse_happened');
   socket?.on('accuse_happened', (newResult): void => {
-    console.log('hi', typeof newResult);
     setIsAccuse(true);
     setWinResult({ stat: true, win: newResult });
   });
@@ -187,7 +188,6 @@ export default function GameContextProvider({
 
   socket?.off('turn_passed');
   socket?.on('turn_passed', (room): void => {
-    console.log('ROOM', room);
     setIsAsked(false);
     setCurrentRoom(room);
     setGame(room);
@@ -240,6 +240,7 @@ export default function GameContextProvider({
         answerBack,
         accuse,
         winResult,
+        solution
       }}
     >
       {children}

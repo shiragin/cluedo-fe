@@ -19,6 +19,7 @@ function GameRoomPage() {
     activePlayer,
     askedPlayer,
     onLeave,
+    user,
   } = useGameContext();
   const [murderCards, setMurderCards] = useState<Clue[]>([]);
   const [clueCards, setClueCards] = useState<Clue[]>([]);
@@ -30,7 +31,7 @@ function GameRoomPage() {
     if (game && game?.players)
       if (game?.players.length !== undefined) {
         if (game?.players?.length === 2) {
-          // console.log('game');
+          game.murder = murderCards;
           game.players[0].clues = [
             shuffledCards[0],
             shuffledCards[1],
@@ -94,19 +95,23 @@ function GameRoomPage() {
   }, [game]);
 
   useEffect(() => {
+    if (activePlayer !== user?.id) return;
     let newMurderCards: Clue[];
     if (ShuffleMurderCard) {
       newMurderCards = ShuffleMurderCard();
       setMurderCards(newMurderCards);
-
-      const newClueCards = Clues?.filter(
-        (elem) => !newMurderCards.find(({ id }) => elem.id === id)
-      );
-
-      setClueCards(newClueCards);
-      giveClueCards(newClueCards);
     }
   }, []);
+
+  useEffect(() => {
+    if (activePlayer !== user?.id) return;
+    const newClueCards = Clues?.filter(
+      (elem) => !murderCards.find(({ id }) => elem.id === id)
+    );
+
+    setClueCards(newClueCards);
+    giveClueCards(newClueCards);
+  }, [murderCards]);
 
   return (
     <div className='game-container'>

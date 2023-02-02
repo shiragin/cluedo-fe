@@ -16,7 +16,8 @@ function ModalAccuse({ murderCards }: { murderCards: Clue[] }): JSX.Element {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { isAccuse, setIsAccuse, accuse, winResult } = useGameContext();
+  const { isAccuse, setIsAccuse, accuse, winResult, solution } =
+    useGameContext();
   const [selectedSuspect, setSelectedSuspect] = useState('');
   const [selectedWeapon, setSelectedWeapon] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
@@ -75,9 +76,9 @@ function ModalAccuse({ murderCards }: { murderCards: Clue[] }): JSX.Element {
   };
   const handleSaveChanges = () => {
     console.log('accusation', newAccusation);
-    console.log('solution', murderCards);
+    console.log('solution', solution);
     const murder: Accusation = { suspect: '', location: '', weapon: '' };
-    murderCards.forEach((card) => {
+    solution.forEach((card: any) => {
       if (card.cardType === 'suspect') {
         murder.suspect = card.name;
       } else if (card.cardType === 'location') {
@@ -158,8 +159,8 @@ function ModalAccuse({ murderCards }: { murderCards: Clue[] }): JSX.Element {
         {winResult?.stat && (
           <div className='d-flex flex-column align-items-center text-center fs-1'>
             {winResult?.win ? 'KILLER FOUND' : 'WRONG ACCUSATION'}
-            {/* <div> THE SOLUTION IS</div> */}
-            {/* {murderCards.map((object: Clue, index: number) => (
+            <div> THE SOLUTION IS</div>
+            {solution.map((object: Clue, index: number) => (
               <ClueCard
                 key={index}
                 name={object.name}
@@ -168,7 +169,7 @@ function ModalAccuse({ murderCards }: { murderCards: Clue[] }): JSX.Element {
                 image={object.image}
                 myClues={[]}
               />
-            ))} */}
+            ))}
           </div>
         )}
       </Modal>

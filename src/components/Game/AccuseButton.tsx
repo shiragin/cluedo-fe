@@ -9,7 +9,6 @@ const AccuseButton = ({ murderCards }: { murderCards: Clue[] }) => {
   const { isAccuse, setIsAccuse } = useGameContext();
 
   function onAccuse() {
-    console.log('This player accuse');
     if (setIsAccuse) {
       setIsAccuse(true);
     }

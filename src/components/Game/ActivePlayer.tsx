@@ -35,6 +35,7 @@ function ActivePlayer({ murderCards }: { murderCards: Clue[] }): JSX.Element {
               color={clue.color}
               image={clue.image}
               myClues={myClues}
+              asked={false}
             />
           ))}
         </div>
@@ -47,6 +48,7 @@ function ActivePlayer({ murderCards }: { murderCards: Clue[] }): JSX.Element {
               color={clue.color}
               image={clue.image}
               myClues={myClues}
+              asked={false}
             />
           ))}
         </div>

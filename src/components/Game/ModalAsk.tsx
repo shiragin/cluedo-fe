@@ -89,6 +89,7 @@ function ModalAsk(props: any) {
               color={object.color}
               image={object.image}
               myClues={[]}
+              asked={true}
             />
           ))}
         </Modal.Body>
@@ -139,6 +140,7 @@ function ModalAsk(props: any) {
               color={answerBack?.answer.color}
               image={answerBack?.answer.image}
               myClues={[]}
+              asked={true}
             />
             <Button
               className='new-btn align-self-center'

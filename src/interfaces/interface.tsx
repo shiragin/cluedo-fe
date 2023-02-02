@@ -64,6 +64,7 @@ export interface Props {
   color: string;
   image: string;
   myClues: Clue[];
+  asked?: boolean;
 }
 
 export interface Game {

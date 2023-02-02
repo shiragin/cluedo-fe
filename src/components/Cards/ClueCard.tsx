@@ -7,13 +7,21 @@ import { Clue } from '../../interfaces/interface';
 import Ribbon from './Ribbon';
 import ActivePlayer from '../Game/ActivePlayer';
 
-function ClueCard({ name, cardType, image, myClues }: Props): JSX.Element {
+function ClueCard({
+  name,
+  cardType,
+  image,
+  myClues,
+  asked,
+}: Props): JSX.Element {
   const [eliminated, setEliminated] = useState<boolean>(false);
   const { selectedCards, setSelectedCards, game, activePlayer } =
     useGameContext();
   const [clue, setClue] = useState(false);
 
   const handleClick = () => {
+    console.log('Asked', asked);
+    if (asked) return;
     if (selectedCards && setSelectedCards)
       if (selectedCards.includes(name)) {
         setSelectedCards(selectedCards.filter((card) => card !== name));

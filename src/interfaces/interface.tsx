@@ -44,6 +44,8 @@ export interface IGameContext {
   sendClues: (game: Game) => void;
   activePlayer: string;
   askedPlayer: string;
+  playerClues: any;
+  // setPlayerClues:
 }
 
 export interface User {

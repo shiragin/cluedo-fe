@@ -33,22 +33,7 @@ const Center: React.FC<Props> = (props: Props) => {
   return (
     <div className='center'>
       <ModalAsk asked={objectsArray} />
-      {/* {isAsked ? (
-        <div className='selected-card'>
-          {objectsArray.map((object, index) => (
-            <ClueCard
-              key={index}
-              name={object.name}
-              cardType={object.cardType}
-              color={object.color}
-              image={object.image}
-              myClues={[]}
-            />
-          ))}
-        </div>
-      ) : ( */}
       <img src={Cluedo} className='clue' alt='The murder case' />
-      {/* )} */}
     </div>
   );
 };

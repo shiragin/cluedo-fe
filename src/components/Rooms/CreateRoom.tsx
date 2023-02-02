@@ -18,7 +18,7 @@ function CreateRoom({
     name: '',
     roomId: uuidv4(),
     players: [{ playerId: user!.id, playerNickname: user!.nickname }],
-    maxPlayers: 4,
+    maxPlayers: 2,
   });
 
   const handleChange = (e: React.ChangeEvent): void => {
@@ -47,13 +47,17 @@ function CreateRoom({
         <Form.Label>Max Players</Form.Label>
         <Form.Select
           name='maxPlayers'
-          defaultValue={4}
+          defaultValue={2}
           onChange={handleChange}
           aria-label='Default select example'
         >
           <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
+          <option value={3} disabled>
+            3
+          </option>
+          <option value={4} disabled>
+            4
+          </option>
         </Form.Select>
         <div className='button-container'>
           <Button

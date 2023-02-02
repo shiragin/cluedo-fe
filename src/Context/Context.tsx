@@ -27,6 +27,7 @@ export default function GameContextProvider({
   const [game, setGame] = useState<Game | null>(null);
   const [activePlayer, setActivePlayer] = useState('');
   const [askedPlayer, setAskedPlayer] = useState('');
+  // const [playerClues, setPlayerClues] = useState<Clue[] | null>(null);
 
   const ShuffleMurderCard = (): Clue[] => {
     const cards: Clue[] = [];
@@ -99,9 +100,14 @@ export default function GameContextProvider({
   }
 
   socket?.off('clues_sent');
-  socket?.on('clues_sent', (room: Room) => {
-    console.log(room);
+  socket?.on('clues_sent', (room: Game) => {
     setCurrentRoom(room);
+    // console.log(room);
+    // const myclues = room!.players.find(
+    //   (player: any) => player.playerId === user?.id
+    // );
+    // console.log('FDgdsg', myclues);
+    // setPlayerClues(myclues as any);
     localStorage.setItem('game', JSON.stringify(room));
   });
 
@@ -125,9 +131,11 @@ export default function GameContextProvider({
   }
 
   socket?.off('game_started');
-  socket?.on('game_started', (room): void => {
+  socket?.on('game_started', ({ room, players }): void => {
     setGameStarted(true);
     setGame(room);
+    console.log('wow', players);
+    // setPlayerClues(room.players.find((player: any) => player.playerId === user?.id));
     localStorage.setItem('game', JSON.stringify(room));
   });
 
@@ -163,6 +171,7 @@ export default function GameContextProvider({
 
   function onLeave(): void {
     socket?.emit('player_left', { room: currentRoom, user });
+    setGameStarted(false);
   }
 
   return (
@@ -195,6 +204,7 @@ export default function GameContextProvider({
         sendClues,
         activePlayer,
         askedPlayer,
+        // playerClues,
       }}
     >
       {children}

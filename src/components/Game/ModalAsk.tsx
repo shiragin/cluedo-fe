@@ -6,7 +6,8 @@ import ClueCard from '../Cards/ClueCard';
 import { Clue } from '../../interfaces/interface';
 
 function ModalAsk(props: any) {
-  const { isAsked, activePlayer, askedPlayer, game, user } = useGameContext();
+  const { isAsked, setIsAsked, activePlayer, askedPlayer, game, user } =
+    useGameContext();
   const [show, setShow] = useState(false);
   const [asking, setAsking] = useState<{
     playerId: string;
@@ -52,6 +53,10 @@ function ModalAsk(props: any) {
     // console.log('jdfjsl', result);
   }, [askedPlayer, game]);
 
+  function askClickHandler() {
+    if (setIsAsked) setIsAsked(false);
+  }
+
   return (
     <>
       <Modal show={isAsked} onHide={handleClose}>
@@ -74,9 +79,15 @@ function ModalAsk(props: any) {
         </Modal.Body>
         {user?.id === askedPlayer && (
           <div className='ask-buttons'>
-            <Button className='new-btn'>Clue1</Button>
-            <Button className='new-btn'>Clue1</Button>
-            <Button className='new-btn'>OMG NOES</Button>
+            <Button className='new-btn' onClick={askClickHandler}>
+              Clue1
+            </Button>
+            <Button className='new-btn' onClick={askClickHandler}>
+              Clue1
+            </Button>
+            <Button className='new-btn' onClick={askClickHandler}>
+              OMG NOES
+            </Button>
           </div>
         )}
       </Modal>

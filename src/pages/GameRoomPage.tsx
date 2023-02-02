@@ -7,6 +7,8 @@ import Player from '../components/Game/Player';
 import Center from '../components/Game/Center';
 import ActivePlayer from '../components/Game/ActivePlayer';
 import '../Styling/GameRoom.scss';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router';
 
 function GameRoomPage() {
   const {
@@ -16,15 +18,19 @@ function GameRoomPage() {
     setGame,
     activePlayer,
     askedPlayer,
+    onLeave,
   } = useGameContext();
   const [murderCards, setMurderCards] = useState<Clue[]>([]);
   const [clueCards, setClueCards] = useState<Clue[]>([]);
+
+  const navigate = useNavigate();
 
   function giveClueCards(clues: Clue[]) {
     const shuffledCards = _.shuffle(clues);
     if (game && game?.players)
       if (game?.players.length !== undefined) {
         if (game?.players?.length === 2) {
+          // console.log('game');
           game.players[0].clues = [
             shuffledCards[0],
             shuffledCards[1],
@@ -104,6 +110,15 @@ function GameRoomPage() {
 
   return (
     <div className='game-container'>
+      <Button
+        className='new-btn'
+        onClick={() => {
+          onLeave && onLeave();
+          navigate('/');
+        }}
+      >
+        Leave Game
+      </Button>
       <div className='top'>
         <Player display={'up'} num={1} />
       </div>

@@ -3,11 +3,14 @@ import { Props } from '../../interfaces/interface';
 import { useGameContext } from '../../Context/Context';
 import '../../Styling/SuspectCard.scss';
 import '../../Data/Clues.json';
+import { Clue } from '../../interfaces/interface';
 import Ribbon from './Ribbon';
+import ActivePlayer from '../Game/ActivePlayer';
 
 function ClueCard({ name, cardType, image, myClues }: Props): JSX.Element {
   const [eliminated, setEliminated] = useState<boolean>(false);
-  const { selectedCards, setSelectedCards, game } = useGameContext();
+  const { selectedCards, setSelectedCards, game, activePlayer } =
+    useGameContext();
   const [clue, setClue] = useState(false);
 
   const handleClick = () => {
@@ -25,13 +28,18 @@ function ClueCard({ name, cardType, image, myClues }: Props): JSX.Element {
     setEliminated(!eliminated);
   }
 
-  const handleSendName = () => {
-    localStorage.setItem('selectedCards', JSON.stringify(selectedCards));
-  };
+  // const handleSendName = () => {
+  //   localStorage.setItem('selectedCards', JSON.stringify(selectedCards));
+  // };
+
+  // function showClues(clues: Clue[]) {
+  // }
 
   useEffect(() => {
+    // console.log(playerClues);
+    // if (playerClues?.length) showClues(playerClues);
     console.log('HHHHHAAA', myClues);
-    const clueNames = myClues.map((clue) => clue.name);
+    const clueNames = myClues?.map((clue: any) => clue.name);
     if (clueNames.includes(name)) setClue(true);
   }, [myClues]);
 

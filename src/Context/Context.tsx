@@ -102,12 +102,7 @@ export default function GameContextProvider({
   socket?.off('clues_sent');
   socket?.on('clues_sent', (room: Game) => {
     setCurrentRoom(room);
-    // console.log(room);
-    // const myclues = room!.players.find(
-    //   (player: any) => player.playerId === user?.id
-    // );
-    // console.log('FDgdsg', myclues);
-    // setPlayerClues(myclues as any);
+    setGame(room);
     localStorage.setItem('game', JSON.stringify(room));
   });
 
@@ -134,18 +129,15 @@ export default function GameContextProvider({
   socket?.on('game_started', ({ room, players }): void => {
     setGameStarted(true);
     setGame(room);
-    console.log('wow', players);
-    // setPlayerClues(room.players.find((player: any) => player.playerId === user?.id));
     localStorage.setItem('game', JSON.stringify(room));
   });
 
-  // useEffect(() => {
-  //   if (currentRoom?.players.length === readyPlayers.length) {
-  //   }
-  // }, [readyPlayers]);
-
   function onAsk(selectedCards: Array<string>): void {
     socket?.emit('ask', { selectedCards, game });
+  }
+
+  function passTurn(): void {
+    socket?.emit('pass_turn', game);
   }
 
   socket?.off('asked_cards');
@@ -162,6 +154,16 @@ export default function GameContextProvider({
   socket?.off('player_joined');
   socket?.on('player_joined', (room): void => {
     setCurrentRoom(room);
+  });
+
+  socket?.off('turn_passed');
+  socket?.on('turn_passed', (room): void => {
+    console.log('ROOM', room);
+    setIsAsked(false);
+    setCurrentRoom(room);
+    setGame(room);
+    setSelectedCards([]);
+    localStorage.setItem('game', JSON.stringify(room));
   });
 
   socket?.off('player_quit');
@@ -204,7 +206,7 @@ export default function GameContextProvider({
         sendClues,
         activePlayer,
         askedPlayer,
-        // playerClues,
+        passTurn,
       }}
     >
       {children}

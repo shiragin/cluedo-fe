@@ -38,6 +38,7 @@ export interface IGameContext {
   readyPlayers: string[];
   setReadyPlayers: React.Dispatch<React.SetStateAction<string[]>>;
   onStart: () => void;
+  passTurn: () => void;
   gameStarted: boolean;
   game: Game | null;
   setGame: React.Dispatch<React.SetStateAction<Game | null>>;

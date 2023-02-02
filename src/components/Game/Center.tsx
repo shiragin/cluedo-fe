@@ -27,6 +27,8 @@ const Center: React.FC<Props> = (props: Props) => {
         const clues = Clues.filter((elem) => elem.name === card);
         setObjectsArray((prev) => [...prev, ...clues]);
       });
+    } else {
+      setObjectsArray([]);
     }
   }, [isAsked, selectedCards]);
 

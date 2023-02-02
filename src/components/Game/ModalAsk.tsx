@@ -6,8 +6,15 @@ import ClueCard from '../Cards/ClueCard';
 import { Clue } from '../../interfaces/interface';
 
 function ModalAsk(props: any) {
-  const { isAsked, setIsAsked, activePlayer, askedPlayer, game, user } =
-    useGameContext();
+  const {
+    isAsked,
+    setIsAsked,
+    activePlayer,
+    askedPlayer,
+    game,
+    user,
+    passTurn,
+  } = useGameContext();
   const [show, setShow] = useState(false);
   const [asking, setAsking] = useState<{
     playerId: string;
@@ -41,9 +48,6 @@ function ModalAsk(props: any) {
 
   useEffect(() => {
     if (!asked) return;
-    // const askedpl = game!.players.find(
-    //   (player) => player.playerId === askedPlayer
-    // );
     const newClues: Clue[] = [];
     for (const clue1 of asked!.clues) {
       for (const clue2 of props.asked) {
@@ -60,7 +64,7 @@ function ModalAsk(props: any) {
     if (setIsAsked) setIsAsked(false);
     if (answer === 'no') {
       console.log('no');
-      // if (passTurn) passTurn();
+      if (passTurn) passTurn();
     }
   }
 

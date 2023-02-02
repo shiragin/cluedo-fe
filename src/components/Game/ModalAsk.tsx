@@ -95,24 +95,36 @@ function ModalAsk(props: any) {
           ))}
         </Modal.Body>
         {user?.id === askedPlayer && (
-          <div className='ask-buttons'>
+          <div className='my-2 ask-buttons d-flex flex-column align-items-center gap-2'>
             <div>Answer the question</div>
             {answer?.length === 0 && (
-              <Button className='new-btn' onClick={() => answerHandler(-1)}>
+              <Button
+                className='new-btn align-self-center'
+                onClick={() => answerHandler(-1)}
+              >
                 Sorry, no
               </Button>
             )}
             {answer?.length === 1 && (
-              <Button className='new-btn' onClick={() => answerHandler(0)}>
+              <Button
+                className='new-btn align-self-center'
+                onClick={() => answerHandler(0)}
+              >
                 {answer[0]?.name}
               </Button>
             )}
             {answer?.length === 2 && (
-              <div>
-                <Button className='new-btn' onClick={() => answerHandler(0)}>
+              <div className='d-flex justify-content-center gap-2'>
+                <Button
+                  className='new-btn align-self-center'
+                  onClick={() => answerHandler(0)}
+                >
                   {answer[0].name}
                 </Button>
-                <Button className='new-btn' onClick={() => answerHandler(1)}>
+                <Button
+                  className='new-btn align-self-center'
+                  onClick={() => answerHandler(1)}
+                >
                   {answer[1].name}
                 </Button>
               </div>
@@ -120,7 +132,7 @@ function ModalAsk(props: any) {
           </div>
         )}
         {answerBack?.stat && (
-          <div className='answer-card'>
+          <div className='my-2 ask-buttons d-flex flex-column align-items-center'>
             <div>The answer!</div>
             <ClueCard
               key={1}
@@ -130,7 +142,10 @@ function ModalAsk(props: any) {
               image={answerBack?.answer.image}
               myClues={[]}
             />
-            <Button className='new-btn' onClick={() => answerHandler(-1)}>
+            <Button
+              className='new-btn align-self-center'
+              onClick={() => answerHandler(-1)}
+            >
               Okay!
             </Button>
           </div>

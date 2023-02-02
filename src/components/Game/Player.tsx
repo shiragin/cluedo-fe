@@ -25,9 +25,9 @@ function Player({
   return (
     <div className='player'>
       <img src={Deck} alt='A deck of cards' className={display} />
-      <div className='player-num'>
+      {/* <div className='player-num'>
         <span>{num}</span>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -22,6 +22,8 @@ function ModalAsk(props: any) {
     clues: Clue[];
   } | null>(null);
 
+  const [answer, setAnswer] = useState<Clue[] | null>(null);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -38,23 +40,28 @@ function ModalAsk(props: any) {
   }, [activePlayer]);
 
   useEffect(() => {
-    if (!game) return;
-    const askedpl = game!.players.find(
-      (player) => player.playerId === askedPlayer
-    );
-    console.log('ask', askedpl?.clues);
-    console.log('props', props.asked);
-    // const result = askedpl!.clues.filter(({ name }) =>
-    //   props.asked.some((clue: Clue) => clue.name === name)
+    if (!asked) return;
+    // const askedpl = game!.players.find(
+    //   (player) => player.playerId === askedPlayer
     // );
-    // const new = Clues?.filter(
-    //   (elem) => !newMurderCards.find(({ id }) => elem.id === id)
-    // );
-    // console.log('jdfjsl', result);
-  }, [askedPlayer, game]);
+    const newClues: Clue[] = [];
+    for (const clue1 of asked!.clues) {
+      for (const clue2 of props.asked) {
+        if (clue1.name === clue2.name) {
+          newClues.push(clue1);
+        }
+      }
+    }
+    console.log('NEW CLUES', newClues);
+    setAnswer(newClues);
+  }, [asked]);
 
-  function askClickHandler() {
+  function answerHandler(answer: string) {
     if (setIsAsked) setIsAsked(false);
+    if (answer === 'no') {
+      console.log('no');
+      // if (passTurn) passTurn();
+    }
   }
 
   return (
@@ -79,15 +86,36 @@ function ModalAsk(props: any) {
         </Modal.Body>
         {user?.id === askedPlayer && (
           <div className='ask-buttons'>
-            <Button className='new-btn' onClick={askClickHandler}>
-              Clue1
-            </Button>
-            <Button className='new-btn' onClick={askClickHandler}>
-              Clue1
-            </Button>
-            <Button className='new-btn' onClick={askClickHandler}>
-              OMG NOES
-            </Button>
+            <div>Answer the question</div>
+            {answer?.length === 0 && (
+              <Button className='new-btn' onClick={() => answerHandler('no')}>
+                Sorry, no
+              </Button>
+            )}
+            {answer?.length === 1 && (
+              <Button
+                className='new-btn'
+                onClick={() => answerHandler('clue1')}
+              >
+                {answer[0]?.name}
+              </Button>
+            )}
+            {answer?.length === 2 && (
+              <div>
+                <Button
+                  className='new-btn'
+                  onClick={() => answerHandler('clue1')}
+                >
+                  {answer[0].name}
+                </Button>
+                <Button
+                  className='new-btn'
+                  onClick={() => answerHandler('clue2')}
+                >
+                  {answer[1].name}
+                </Button>
+              </div>
+            )}
           </div>
         )}
       </Modal>

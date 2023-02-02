@@ -126,7 +126,8 @@ export default function GameContextProvider({
   // }, [readyPlayers]);
 
   function onAsk(selectedCards: Array<string>): void {
-    socket?.emit("ask", { selectedCards, currentRoom });
+    console.log(selectedCards, game?.roomId);
+    socket?.emit('ask', { selectedCards, game });
   }
 
   socket?.off("asked_cards");

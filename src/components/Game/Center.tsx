@@ -3,6 +3,7 @@ import { useGameContext } from '../../Context/Context';
 import { useEffect, useState } from 'react';
 import Clues from '../../Data/Clues.json';
 import ClueCard from '../Cards/ClueCard';
+import ModalAsk from './ModalAsk';
 interface Clue {
   id: number;
   name: string;
@@ -31,7 +32,8 @@ const Center: React.FC<Props> = (props: Props) => {
 
   return (
     <div className='center'>
-      {isAsked ? (
+      <ModalAsk asked={objectsArray} />
+      {/* {isAsked ? (
         <div className='selected-card'>
           {objectsArray.map((object, index) => (
             <ClueCard
@@ -44,9 +46,9 @@ const Center: React.FC<Props> = (props: Props) => {
             />
           ))}
         </div>
-      ) : (
-        <img src={Cluedo} className='clue' alt='The murder case' />
-      )}
+      ) : ( */}
+      <img src={Cluedo} className='clue' alt='The murder case' />
+      {/* )} */}
     </div>
   );
 };

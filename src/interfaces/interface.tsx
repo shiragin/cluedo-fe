@@ -42,6 +42,8 @@ export interface IGameContext {
   game: Game | null;
   setGame: React.Dispatch<React.SetStateAction<Game | null>>;
   sendClues: (game: Game) => void;
+  activePlayer: string;
+  askedPlayer: string;
 }
 
 export interface User {

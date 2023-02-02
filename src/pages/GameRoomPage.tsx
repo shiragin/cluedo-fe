@@ -9,11 +9,16 @@ import ActivePlayer from '../components/Game/ActivePlayer';
 import '../Styling/GameRoom.scss';
 
 function GameRoomPage() {
-  const { ShuffleMurderCard, game, sendClues, setGame } = useGameContext();
+  const {
+    ShuffleMurderCard,
+    game,
+    sendClues,
+    setGame,
+    activePlayer,
+    askedPlayer,
+  } = useGameContext();
   const [murderCards, setMurderCards] = useState<Clue[]>([]);
   const [clueCards, setClueCards] = useState<Clue[]>([]);
-  const [activePlayer, setActivePlayer] = useState('');
-  const [askedPlayer, setAskedPlayer] = useState('');
 
   function giveClueCards(clues: Clue[]) {
     const shuffledCards = _.shuffle(clues);
@@ -77,7 +82,6 @@ function GameRoomPage() {
   }
 
   useEffect(() => {
-    console.log(game, 'fgkldklgdj');
     if (!game && setGame) {
       setGame(JSON.parse(localStorage.getItem('game')!));
     }
@@ -93,21 +97,10 @@ function GameRoomPage() {
         (elem) => !newMurderCards.find(({ id }) => elem.id === id)
       );
 
-      console.log(newClueCards);
-
       setClueCards(newClueCards);
       giveClueCards(newClueCards);
     }
   }, []);
-
-  useEffect(() => {
-    if (game) {
-      const active = game.players.find((player) => player.role === 'active');
-      const asked = game.players.find((player) => player.role === 'asked');
-      setActivePlayer(active!.playerId);
-      setAskedPlayer(asked!.playerId);
-    }
-  }, [game]);
 
   return (
     <div className='game-container'>
@@ -120,7 +113,7 @@ function GameRoomPage() {
         <Player display={'right'} num={2} />
       </div>
       <div className='bottom'>
-        <ActivePlayer activePlayer={activePlayer} askedPlayer={askedPlayer} />
+        <ActivePlayer />
       </div>
     </div>
   );

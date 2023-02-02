@@ -19,8 +19,6 @@ function RoomList({
     else setSelectedRoom(roomId);
   }
 
-  console.log(rooms);
-
   return (
     <div className='waiting-room-container'>
       <Table>

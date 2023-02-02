@@ -7,7 +7,7 @@ import Ribbon from './Ribbon';
 
 function ClueCard({ name, cardType, image, myClues }: Props): JSX.Element {
   const [eliminated, setEliminated] = useState<boolean>(false);
-  const { selectedCards, setSelectedCards } = useGameContext();
+  const { selectedCards, setSelectedCards, game } = useGameContext();
   const [clue, setClue] = useState(false);
 
   const handleClick = () => {
@@ -20,8 +20,6 @@ function ClueCard({ name, cardType, image, myClues }: Props): JSX.Element {
       }
   };
 
-  useEffect(() => {}, []);
-
   function handleRightClick(e: React.MouseEvent) {
     e.preventDefault();
     setEliminated(!eliminated);
@@ -32,9 +30,10 @@ function ClueCard({ name, cardType, image, myClues }: Props): JSX.Element {
   };
 
   useEffect(() => {
+    console.log('HHHHHAAA', myClues);
     const clueNames = myClues.map((clue) => clue.name);
     if (clueNames.includes(name)) setClue(true);
-  });
+  }, [myClues]);
 
   return (
     <div

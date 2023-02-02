@@ -6,14 +6,8 @@ import ClueCard from '../Cards/ClueCard';
 import AccuseButton from './AccuseButton';
 import AskButton from './AskButton';
 
-function ActivePlayer({
-  activePlayer,
-  askedPlayer,
-}: {
-  activePlayer: string;
-  askedPlayer: string;
-}): JSX.Element {
-  const { user, game } = useGameContext();
+function ActivePlayer(): JSX.Element {
+  const { user, game, activePlayer, askedPlayer } = useGameContext();
   const [myClues, setMyClues] = useState<Clue[]>([]);
 
   useEffect(() => {
@@ -22,9 +16,10 @@ function ActivePlayer({
         (player) => player.playerId === user.id
       );
       const { clues } = player[0];
+      console.log('Boo', clues);
       setMyClues(clues);
     }
-  });
+  }, [game]);
 
   return (
     <div className='active-player'>

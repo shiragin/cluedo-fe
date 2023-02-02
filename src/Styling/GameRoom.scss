@@ -42,7 +42,7 @@
         border-radius: 0.357rem;
         transform: rotate(-90deg) translatex(-40px);
       }
-      .selected-card{
+      .selected-card {
         display: flex;
         gap: 1.4rem;
         justify-content: center;
@@ -132,4 +132,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.modal-cards {
+  display: flex;
+  gap: 3rem;
 }

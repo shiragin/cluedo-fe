@@ -6,7 +6,7 @@ import ClueCard from '../Cards/ClueCard';
 import AccuseButton from './AccuseButton';
 import AskButton from './AskButton';
 
-function ActivePlayer(): JSX.Element {
+function ActivePlayer({ murderCards }: { murderCards: Clue[] }): JSX.Element {
   const { user, game, activePlayer, askedPlayer } = useGameContext();
   const [myClues, setMyClues] = useState<Clue[]>([]);
 
@@ -25,7 +25,7 @@ function ActivePlayer(): JSX.Element {
       <div className='active-player-cards'>
         <div className='buttons'>
           {user?.id === activePlayer && <AskButton />}
-          <AccuseButton />
+          <AccuseButton murderCards={murderCards} />
         </div>
         <div className='card-row'>
           {Clues.slice(0, 6).map((clue, index) => (

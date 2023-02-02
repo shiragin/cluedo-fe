@@ -39,6 +39,7 @@ export interface IGameContext {
   setReadyPlayers: React.Dispatch<React.SetStateAction<string[]>>;
   onStart: () => void;
   passTurn: () => void;
+  accuse: (accusation: any) => void;
   gameStarted: boolean;
   game: Game | null;
   setGame: React.Dispatch<React.SetStateAction<Game | null>>;
@@ -48,7 +49,7 @@ export interface IGameContext {
   playerClues: any;
   sendReply: (answer: Clue) => void;
   answerBack: any;
-  // setPlayerClues:
+  winResult: { stat: boolean; win: boolean };
 }
 
 export interface User {

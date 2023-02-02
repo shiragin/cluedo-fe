@@ -128,7 +128,7 @@ function GameRoomPage() {
         <Player display={'right'} num={2} />
       </div>
       <div className='bottom'>
-        <ActivePlayer />
+        <ActivePlayer murderCards={murderCards} />
       </div>
     </div>
   );

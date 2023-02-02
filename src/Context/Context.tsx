@@ -27,6 +27,7 @@ export default function GameContextProvider({
   const [game, setGame] = useState<Game | null>(null);
   const [activePlayer, setActivePlayer] = useState('');
   const [askedPlayer, setAskedPlayer] = useState('');
+  const [winResult, setWinResult] = useState({ stat: false, win: false });
   const [answerBack, setAnswerBack] = useState<{
     stat: boolean;
     answer: Clue | {};
@@ -148,6 +149,10 @@ export default function GameContextProvider({
     socket?.emit('pass_turn', game);
   }
 
+  function accuse(winResult: boolean) {
+    socket?.emit('accuse', { game, winResult });
+  }
+
   function sendReply(answer: Clue): void {
     socket?.emit('send_reply', { game, answer });
   }
@@ -156,6 +161,13 @@ export default function GameContextProvider({
   socket?.on('asked_cards', (newSelectedCards): void => {
     setSelectedCards(newSelectedCards);
     setIsAsked(true);
+  });
+
+  socket?.off('accuse_happened');
+  socket?.on('accuse_happened', (newResult): void => {
+    console.log('hi', typeof newResult);
+    setIsAccuse(true);
+    setWinResult({ stat: true, win: newResult });
   });
 
   socket?.off('show_card');
@@ -226,6 +238,8 @@ export default function GameContextProvider({
         passTurn,
         sendReply,
         answerBack,
+        accuse,
+        winResult,
       }}
     >
       {children}
